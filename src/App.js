@@ -1,9 +1,10 @@
 import "./App.css";
+import Router from "./shared/Router";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">Hello World</header>
+      <Router />
     </div>
   );
 }
