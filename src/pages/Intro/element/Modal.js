@@ -2,14 +2,14 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-const Modal = ({ children, modal }) => {
+const Modal = ({ children, modal, onClick }) => {
   const styles = { modal };
   return (
     <>
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>{children}</StModal>
-          <StBackDrop {...styles}></StBackDrop>
+          <StBackDrop {...styles} onClick={onClick}></StBackDrop>
         </Fragment>,
         document.getElementById("root")
       )}
@@ -47,5 +47,6 @@ const StBackDrop = styled.div`
   }};
   width: 100vw;
   height: 100vh;
+  z-index: 10;
   background-color: rgba(141, 141, 141, 0.8);
 `;

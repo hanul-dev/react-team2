@@ -17,6 +17,7 @@ const Input = ({
   change,
   margin,
   holder,
+  height,
 }) => {
   const styles = {
     width,
@@ -30,6 +31,7 @@ const Input = ({
     name,
     type,
     value,
+    height,
     margin,
   };
   return (
@@ -41,6 +43,7 @@ const Input = ({
 
 Input.defaultProps = {
   width: "200px",
+  height: "2em",
   bgColor: "none",
   color: "black",
   border: "none",
@@ -51,7 +54,7 @@ Input.defaultProps = {
   type: "text",
   name: "",
   value: "",
-  change: e => {},
+  change: (e) => {},
   margin: "0",
   holder: "",
 };
@@ -64,6 +67,7 @@ const StInput = styled.input`
   border: ${({ border }) => border};
   opacity: ${({ opacity }) => opacity};
   border-radius: ${({ radius }) => radius};
+  height: ${({ height }) => height};
   box-shadow: ${({ shadow }) => shadow};
   text-align: ${({ ta }) => ta};
   name: ${({ name }) => name};

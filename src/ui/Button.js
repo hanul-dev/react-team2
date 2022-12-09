@@ -13,7 +13,6 @@ const Button = ({
   hover,
   shadow,
   border,
-  margin,
 }) => {
   const styles = {
     hover,
@@ -26,7 +25,6 @@ const Button = ({
     height,
     children,
     border,
-    margin,
   };
   return (
     <StBtn {...styles} onClick={onClick}>
@@ -43,7 +41,6 @@ Button.defaultProps = {
   onclick: () => {},
   shadow: "none",
   border: "1px solid black",
-  margin: "0 auto", // 버튼에서?
 };
 
 const StBtn = styled.button`
@@ -55,7 +52,6 @@ const StBtn = styled.button`
   height: ${({ height }) => height};
   box-shadow: ${({ shadow }) => shadow};
   border: ${({ border }) => border};
-  margin: ${({ margin }) => margin};
   cursor: pointer;
   padding: 3px;
   &:hover {
