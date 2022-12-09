@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+:root{
+  --color-main : ,
+  --color-sub : ,
+  /* -var(var(--color-main)) */
+}
