@@ -19,10 +19,10 @@ export const useAxios = (url) => {
     setError(false);
     try {
       const { data } = await instance.get(`/${url}`);
-      console.log(data);
       setLoading(false);
       dispatch(initialTodos(data));
     } catch (error) {
+      setLoading(false);
       setError(true);
     }
   };
@@ -30,6 +30,7 @@ export const useAxios = (url) => {
   return { error, isLoading, getData };
 };
 
+// 에러를 뱉는다. => 토큰 갱신 처리
 // axios.interceptors.response.use(
 //   function (response) {
 //     // 응답 데이터를 가공
