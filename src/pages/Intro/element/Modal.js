@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
@@ -8,6 +10,13 @@ import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
   const [input, changeHander] = useInput({});
+  const dispatch = useDispatch();
+
+  const onCreateHandler = () => {
+    const doc = { ...input, createdAt: Date.now() };
+    dispatch(addTodo(doc));
+    onClick();
+  };
 
   const styles = { modal };
   return (
@@ -15,7 +24,6 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
-            {" "}
             <h1>New Tesk</h1>
             <Box
               direction="column"
@@ -50,7 +58,7 @@ const Modal = ({ modal, onClick }) => {
               >
                 Close
               </Button>
-              <Button onClick={""}>Create</Button>
+              <Button onClick={onCreateHandler}>Create</Button>
             </Box>
           </StModal>
           <StBackDrop {...styles} onClick={onClick}></StBackDrop>

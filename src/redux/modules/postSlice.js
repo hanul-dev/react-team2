@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initial = {
   todo: [],
-  done: [],
-  notDone: [],
 };
 const postSlice = createSlice({
   name: "todo",
@@ -13,7 +11,7 @@ const postSlice = createSlice({
       state.todo = action.payload;
     },
     addTodo: (state, action) => {
-      console.log(action);
+      state.todo = [...state.todo, action.payload];
     },
   },
 });
