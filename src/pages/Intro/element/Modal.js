@@ -1,14 +1,58 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import Box from "../../../ui/Box";
+import Button from "../../../ui/Button";
+import Input from "../../../ui/Input";
+import useInput from "../hooks/useInput";
 
-const Modal = ({ children, modal, onClick }) => {
+const Modal = ({ modal, onClick }) => {
+  const [input, changeHander] = useInput({});
+
   const styles = { modal };
   return (
     <>
       {ReactDOM.createPortal(
         <Fragment>
-          <StModal {...styles}>{children}</StModal>
+          <StModal {...styles}>
+            {" "}
+            <h1>New Tesk</h1>
+            <Box
+              direction="column"
+              justify="flex-start"
+              align="flex-start"
+              padding="10px"
+            >
+              <label>title</label>
+              <Input
+                width="90%"
+                holder="제목"
+                value={input.title}
+                name="title"
+                change={changeHander}
+              ></Input>
+              <label>contents</label>
+              <Input
+                width="90%"
+                height="40%"
+                holder="내용"
+                value={input.content}
+                name="content"
+                change={changeHander}
+              ></Input>
+              <Box>Label</Box>
+            </Box>
+            <Box>
+              <Button
+                onClick={() => {
+                  onClick();
+                }}
+              >
+                Close
+              </Button>
+              <Button onClick={""}>Create</Button>
+            </Box>
+          </StModal>
           <StBackDrop {...styles} onClick={onClick}></StBackDrop>
         </Fragment>,
         document.getElementById("root")
