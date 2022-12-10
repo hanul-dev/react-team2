@@ -9,14 +9,19 @@ import Input from "../../../ui/Input";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander] = useInput({});
+  const [input, changeHandler, reset] = useInput({});
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
     const doc = { ...input, createdAt: Date.now() };
     dispatch(addTodo(doc));
     onClick();
+    reset();
   };
+  const closeHandler = () => {
+    onClick();
+    reset();
+  }
 
   const styles = { modal };
   return (
@@ -37,7 +42,7 @@ const Modal = ({ modal, onClick }) => {
                 holder="제목"
                 value={input.title}
                 name="title"
-                change={changeHander}
+                change={changeHandler}
               ></Input>
               <label>contents</label>
               <Input
@@ -46,15 +51,13 @@ const Modal = ({ modal, onClick }) => {
                 holder="내용"
                 value={input.content}
                 name="content"
-                change={changeHander}
+                change={changeHandler}
               ></Input>
               <Box>Label</Box>
             </Box>
             <Box>
               <Button
-                onClick={() => {
-                  onClick();
-                }}
+                onClick={closeHandler}
               >
                 Close
               </Button>

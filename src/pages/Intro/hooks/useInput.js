@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 
 const useInput = (a) => {
+  
   const [input, setInput] = useState(
     a ?? {
       title: "",
       content: "",
     }
   );
-  const changeHander = (e) => {
+  const changeHandler = (e) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
-  return [input, changeHander];
+  const reset = () => {
+    setInput({
+      title: "",
+      content: "",
+    })
+  }
+  return [input, changeHandler, reset];
 };
 
 export default useInput;
