@@ -2,11 +2,13 @@ import axios from "axios";
 import React from "react";
 import Button from "../../../ui/Button";
 import Card from "../../../ui/Card";
+
 const instance = axios.create({
   baseURL: "http://localhost:3001",
   headers: { "X-Custom-Header": "foobar" },
   timeout: 1000,
 });
+
 const BoxCard = ({ el, setValue }) => {
   return (
     <Card
