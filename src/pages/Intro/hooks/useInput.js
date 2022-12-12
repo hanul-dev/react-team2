@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const useInput = (a) => {
+const useInput = (inputValue) => {
   const [input, setInput] = useState(
-    a ?? {
+    inputValue ?? {
       title: "",
       content: "",
     }
