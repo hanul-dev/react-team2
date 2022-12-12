@@ -1,50 +1,19 @@
 {
   "posts": [
     {
-      "title": "test1",
-      "content": "test1",
-      "postId": 5782,
-      "createdAt": 1670613087554,
-      "id": 1
-    },
-    {
-      "title": "test2",
-      "content": "test2",
-      "postId": 9848,
-      "createdAt": 1670613090498,
-      "id": 2
-    },
-    {
-      "title": "test3",
-      "content": "test3",
-      "postId": 9645,
-      "createdAt": 1670613090923,
-      "id": 3
-    },
-    {
-      "title": "test4",
-      "content": "test4",
-      "postId": 5266,
-      "createdAt": 1670613091138,
-      "id": 4
-    },
-    {
       "title": "test5",
       "content": "test5",
       "createdAt": 1670613162565,
       "id": 5
-
-
-    }
-
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "waef",
+      "content": "efwa",
+      "createdAt": "2022. 12. 12. 오후 5:57:53",
+      "id": 6
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
