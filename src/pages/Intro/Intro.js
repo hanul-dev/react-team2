@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Box from "../../ui/Box";
-import Modal from "./element/Modal";
 import Button from "../../ui/Button";
-import { useAxios } from "./hooks/useAxios";
-import { useSelector } from "react-redux";
 import BoxCard from "./element/BoxCard";
+import Input from "../../ui/Input";
+import { useSelector } from "react-redux";
+import { useAxios } from "./hooks/useAxios";
+import useInput from "./hooks/useInput";
+import Modal from "./element/Modal";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
   const { error, isLoading, getData } = useAxios("posts");
+  const [input, changeHander] = useInput({});
   const todolist = useSelector((state) => state.postReducer.todo);
 
   useEffect(() => {
@@ -47,6 +50,13 @@ const Intro = () => {
               justify="space-between"
               padding="5px"
             >
+              <Input
+                width="90%"
+                holder="제목"
+                value={input.title}
+                name="title"
+                change={changeHander}
+              ></Input>
               <Box bgColor="yellow" height="80%" width="40%" margin="0">
                 Label
               </Box>
