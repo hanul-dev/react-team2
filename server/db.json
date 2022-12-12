@@ -1,81 +1,39 @@
 {
   "posts": [
     {
-      "title": "12312",
-      "content": "3123123",
+      "title": "test1",
+      "content": "test1",
       "postId": 5782,
       "createdAt": 1670613087554,
       "id": 1
     },
     {
-      "title": "12312",
-      "content": "3123123",
+      "title": "test2",
+      "content": "test2",
       "postId": 9848,
       "createdAt": 1670613090498,
       "id": 2
     },
     {
-      "title": "12312",
-      "content": "3123123",
+      "title": "test3",
+      "content": "test3",
       "postId": 9645,
       "createdAt": 1670613090923,
       "id": 3
     },
     {
-      "title": "12312",
-      "content": "3123123",
+      "title": "test4",
+      "content": "test4",
       "postId": 5266,
       "createdAt": 1670613091138,
       "id": 4
     },
     {
-      "title": "123",
-      "content": "123123",
+      "title": "test5",
+      "content": "test5",
       "createdAt": 1670613162565,
       "id": 5
     },
-    {
-      "title": "123",
-      "content": "123123",
-      "createdAt": 1670613162749,
-      "id": 6
-    },
-    {
-      "title": "123",
-      "content": "123",
-      "createdAt": 1670613441647,
-      "id": 7
-    },
-    {
-      "title": "123123",
-      "content": "123123123",
-      "createdAt": 1670613555379,
-      "id": 8
-    },
-    {
-      "title": "123123",
-      "content": "123123",
-      "createdAt": 1670613576525,
-      "id": 9
-    },
-    {
-      "title": "123123",
-      "content": "123",
-      "createdAt": 1670613663527,
-      "id": 10
-    },
-    {
-      "title": "ddd",
-      "content": "ddd",
-      "createdAt": 1670613667296,
-      "id": 11
-    },
-    {
-      "title": "123123",
-      "content": "123123123",
-      "createdAt": 1670722005322,
-      "id": 12
-    }
   ],
   "comments": [
     {
