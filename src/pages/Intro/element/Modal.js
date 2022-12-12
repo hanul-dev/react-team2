@@ -13,7 +13,9 @@ const Modal = ({ modal, onClick }) => {
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    const doc = { ...input, createdAt: Date.now() };
+    const today = new Date();
+    const createdAt = today.toLocaleString("ko");
+    const doc = { ...input, createdAt };
     dispatch(addTodo(doc));
     onClick();
   };
@@ -70,6 +72,17 @@ const Modal = ({ modal, onClick }) => {
 };
 
 export default Modal;
+
+// label => 유틸? 훅?
+// 리액트에서 use 파일앞에 => 그 함수안에서는 리액트 훅을 사용할 수 있음.
+// 리액트 훅은 컴포넌트 함수, use가 붙은 함수에서만 사용 가능
+
+// 라벨을 유틸로 => 라벨을 누르면 전역 상태가 변경되게
+// 라벨을 눌렀을 때 값을 받아오는(axios get) 유틸
+// axios get요청 response가 리듀서 or thunk 상태로 저장
+// => 렌더링
+
+// 훅 만들고 => response return => 화면 렌더링
 
 const StModal = styled.div`
   position: absolute;
