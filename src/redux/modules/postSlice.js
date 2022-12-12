@@ -18,12 +18,12 @@ const postSlice = createSlice({
       state.todo = action.payload;
     },
     addTodo: (state, action) => {
-      instance.post("/posts", action.payload);
       state.todo = [...state.todo, action.payload];
+      instance.post("/posts", action.payload);
     },
     deleteTodo: (state, action) => {
-      instance.delete(`/posts/${action.payload}`);
       state.todo = state.todo.filter((el) => el.id !== action.payload);
+      instance.delete(`/posts/${action.payload}`);
     },
   },
 });
