@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const instance = axios.create({
+  baseURL: "http://localhost:3001",
+  headers: { "X-Custom-Header": "foobar" },
+  timeout: 1000,
+});
+
 const initial = {
   todo: [],
 };
@@ -12,8 +18,12 @@ const postSlice = createSlice({
       state.todo = action.payload;
     },
     addTodo: (state, action) => {
-      axios.post("http://localhost:3001/posts", action.payload);
+      instance.post("/posts", action.payload);
       state.todo = [...state.todo, action.payload];
+    },
+    deleteTodo: (state, action) => {
+      instance.delete(`/posts/${action.payload}`);
+      state.todo = state.todo.filter((el) => el.id !== action.payload);
     },
   },
 });
@@ -24,5 +34,5 @@ const postSlice = createSlice({
 //              thunk에서 관리되었을때 에러처리되었을 때
 // form에 만들 수 있는 훅? : 유효성(value => 검사 => return [value, message])
 
-export const { initialTodos, addTodo } = postSlice.actions;
+export const { initialTodos, addTodo, deleteTodo } = postSlice.actions;
 export default postSlice.reducer;

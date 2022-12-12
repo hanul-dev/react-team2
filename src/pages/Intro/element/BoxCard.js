@@ -1,15 +1,12 @@
 import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../../../redux/modules/postSlice";
 import Button from "../../../ui/Button";
 import Card from "../../../ui/Card";
 
-const instance = axios.create({
-  baseURL: "http://localhost:3001",
-  headers: { "X-Custom-Header": "foobar" },
-  timeout: 1000,
-});
-
-const BoxCard = ({ el, setValue }) => {
+const BoxCard = ({ el }) => {
+  const dispatch = useDispatch();
   return (
     <Card
       border="1px solid red"
@@ -20,8 +17,7 @@ const BoxCard = ({ el, setValue }) => {
       {el.title}
       <Button
         onClick={() => {
-          instance.delete(`/posts/${el.id}`);
-          setValue((prev) => prev.filter((i) => i.id !== el.id));
+          dispatch(deleteTodo(el.id));
         }}
       >
         삭제
