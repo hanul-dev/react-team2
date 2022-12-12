@@ -1,4 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  current,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
 const instance = axios.create({
@@ -6,9 +11,20 @@ const instance = axios.create({
   headers: { "X-Custom-Header": "foobar" },
   timeout: 1000,
 });
-
+// 검색기능을 해야하니까 일단 db에서 title을 매칭시켜야되겠다.
+// db의 모든 글을 가져와서 내가 검색한 title이랑 비교해서 맞으면 state로 return해야겠다.
+export const searchData = createAsyncThunk(
+  "postSlice/searchData",
+  async (title) => {
+    const res = await instance.get("/posts");
+    const result = await res.data.filter((el) => el.title === title);
+    return result;
+  }
+);
+console.log(searchData);
 const initial = {
   todo: [],
+  searchTodo: [],
 };
 const postSlice = createSlice({
   name: "todo",
@@ -26,13 +42,14 @@ const postSlice = createSlice({
       state.todo = state.todo.filter((el) => el.id !== action.payload);
     },
   },
+  extraReducers: {
+    [searchData.pending]: (state, action) => {},
+    [searchData.fulfilled]: (state, { payload }) => {
+      state.searchTodo = [...payload];
+    },
+    [searchData.rejected]: (state, action) => {},
+  },
 });
-
-// 댓글 중간 미들웨어 thunk 로직처리가 필요
-// 좋은 패턴일까?
-// 윤 매니저님 : 로직이 한군데에서 관리되서 유지보수에 용이하도록
-//              thunk에서 관리되었을때 에러처리되었을 때
-// form에 만들 수 있는 훅? : 유효성(value => 검사 => return [value, message])
 
 export const { initialTodos, addTodo, deleteTodo } = postSlice.actions;
 export default postSlice.reducer;

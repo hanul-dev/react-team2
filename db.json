@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "123",
+      "content": "123123",
+      "createdAt": "2022. 12. 12. 오후 8:53:44",
+      "id": 2
+    },
+    {
+      "title": "123123",
+      "content": "123123123123",
+      "createdAt": "2022. 12. 12. 오후 9:57:48",
+      "id": 3
+    },
+    {
+      "title": "123123123123",
+      "content": "123123123123123123123",
+      "createdAt": "2022. 12. 12. 오후 9:57:53",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
