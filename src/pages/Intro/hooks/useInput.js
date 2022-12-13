@@ -12,7 +12,12 @@ const useInput = (inputValue) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
-  return [input, changeHander];
+  const [label, setLabel] = useState("");
+  const changeLabel = (label) => {
+    setLabel(label);
+  }
+  return [input, changeHander, label, changeLabel ];
+  
 };
 
 export default useInput;

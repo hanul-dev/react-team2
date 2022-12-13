@@ -18,6 +18,7 @@ const Intro = () => {
   );
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     getData("posts");
   }, []);

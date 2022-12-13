@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -6,16 +6,18 @@ import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
+import Label from '../../../ui/Label';
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander] = useInput({});
+  const [input, changeHander, label, changeLabel] = useInput({});
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
+    // console.log(label);
     const today = new Date();
     const createdAt = today.toLocaleString("ko");
-    const doc = { ...input, createdAt };
+    const doc = { ...input, createdAt, label };
     dispatch(addTodo(doc));
     onClick();
   };
@@ -50,7 +52,11 @@ const Modal = ({ modal, onClick }) => {
                 name="content"
                 change={changeHander}
               ></Input>
-              <Box>Label</Box>
+              <Box justify="flex-start">
+                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>Redux</Label>
+                <Label onClick={() => changeLabel("React")} value={"React"}>React</Label>
+                <Label onClick={() => changeLabel("Javascript")} value={"Javascript"}>Javascript</Label>
+                </Box>
             </Box>
             <Box>
               <Button
