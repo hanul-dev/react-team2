@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Box from "../../ui/Box";
-import Modal from "./element/Modal";
 import Button from "../../ui/Button";
-import { useAxios } from "./hooks/useAxios";
-import { useSelector } from "react-redux";
 import BoxCard from "./element/BoxCard";
+import Input from "../../ui/Input";
+import { useDispatch, useSelector } from "react-redux";
+import { useAxios } from "./hooks/useAxios";
+import useInput from "./hooks/useInput";
+import Modal from "./element/Modal";
+import { searchData } from "../../redux/modules/postSlice";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { error, isLoading, getData } = useAxios("posts");
-  const todolist = useSelector((state) => state.postReducer.todo);
+  const { error, isLoading, getData } = useAxios();
+  const [input, changeHander] = useInput({});
+  const { todo: todolist, searchTodo } = useSelector(
+    (state) => state.postReducer
+  );
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
-    getData();
+    getData("posts");
   }, []);
 
   const onClickHandler = () => {
     setOpenModal(true);
+  };
+  const enterKeyHandler = async (e) => {
+    console.log(window.event.keyCode);
+    if (window.event.keyCode === 13) {
+      dispatch(searchData(input.search));
+    }
   };
 
   return (
@@ -39,8 +52,18 @@ const Intro = () => {
             height="80vh"
             border="1px solid purple"
             bgColor="grey"
-            align="flex-start"
+            align="center"
           >
+            <Input
+              width="90%"
+              height="2rem"
+              margin="5px"
+              holder="검색"
+              value={input.search}
+              name="search"
+              change={changeHander}
+              keyup={enterKeyHandler}
+            ></Input>
             <Box
               width="100%"
               height="80px"
@@ -54,9 +77,13 @@ const Intro = () => {
               <Button onClick={onClickHandler}>Icon</Button>
             </Box>
             <Box>
-              {todolist.map((el, i) => {
-                return <BoxCard key={`box${i}`} el={el} />;
-              })}
+              {searchTodo.length > 0
+                ? searchTodo.map((el, i) => {
+                    return <BoxCard key={`box${i}`} el={el} />;
+                  })
+                : todolist.map((el, i) => {
+                    return <BoxCard key={`box${i}`} el={el} />;
+                  })}
             </Box>
           </Box>
         </>

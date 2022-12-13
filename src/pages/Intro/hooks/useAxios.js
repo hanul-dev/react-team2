@@ -9,12 +9,12 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-export const useAxios = (url) => {
+export const useAxios = () => {
   const [error, setError] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const getData = async () => {
+  const getData = async (url) => {
     setLoading(true);
     setError(false);
     try {

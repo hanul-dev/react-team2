@@ -5,6 +5,7 @@ const useInput = (inputValue) => {
     inputValue ?? {
       title: "",
       content: "",
+      search: "",
     }
   );
   const changeHander = (e) => {

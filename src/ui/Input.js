@@ -16,6 +16,7 @@ const Input = ({
   value,
   change,
   margin,
+  keyup,
   holder,
   height,
 }) => {
@@ -35,7 +36,7 @@ const Input = ({
     margin,
   };
   return (
-    <StInput {...styles} placeholder={holder} onChange={change}>
+    <StInput {...styles} placeholder={holder} onChange={change} onKeyUp={keyup}>
       {children}
     </StInput>
   );
@@ -55,6 +56,7 @@ Input.defaultProps = {
   name: "",
   value: "",
   change: (e) => {},
+  keyup: (e) => {},
   margin: "0",
   holder: "",
 };
