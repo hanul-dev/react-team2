@@ -18,6 +18,7 @@ const Card = ({
   shadow,
   height,
   position,
+  flexBasis,
 }) => {
   const styles = {
     width,
@@ -35,6 +36,7 @@ const Card = ({
     padding,
     height,
     position,
+    flexBasis,
   };
   return <StCard {...styles}>{children}</StCard>;
 };
@@ -54,6 +56,7 @@ Card.defaultProps = {
   opacity: 1,
   margin: "0 auto",
   position: "",
+  flexBasis: "200px"
 };
 const StCard = styled.div`
   width: ${({ width }) => width};

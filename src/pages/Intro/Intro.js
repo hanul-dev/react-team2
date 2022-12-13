@@ -11,6 +11,7 @@ const Intro = () => {
   const { error, isLoading, getData } = useAxios("posts");
   const todolist = useSelector((state) => state.postReducer.todo);
 
+
   useEffect(() => {
     getData();
   }, []);
