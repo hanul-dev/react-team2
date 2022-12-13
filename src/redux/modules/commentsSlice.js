@@ -44,6 +44,8 @@ export const commentsSlice = createSlice({
     deleteComments: (state, action) => {
       instance.delete(`/comments/${action.payload}`);
       state.comments.comments = state.comments.comments.filter((e) => {
+        console.log(e.id);
+        console.log(action.payload);
         return e.id !== action.payload;
       });
     },

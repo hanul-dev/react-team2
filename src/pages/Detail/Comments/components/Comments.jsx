@@ -9,7 +9,7 @@ const Comments = ({
   onUpdateComments,
 }) => {
   const [commentInput, setCommentInput] = useState("");
-  const [updateMode, setUpdateMode] = useState(false);
+  const [updateMode, setUpdateMode] = useState(false); 
   const [updateId, setUpdateId] = useState(null);
   const [updateText, setUpdateText] = useState("");
 

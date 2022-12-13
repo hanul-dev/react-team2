@@ -1,12 +1,6 @@
 {
   "posts": [
     {
-      "title": "waef",
-      "content": "efwa",
-      "createdAt": "2022. 12. 12. 오후 5:57:53",
-      "id": 6
-    },
-    {
       "createdAt": "2022. 12. 12. 오후 7:40:02",
       "id": 7
     },
@@ -17,16 +11,22 @@
   ],
   "comments": [
     {
-      "postId": 6,
-      "text": "ㅁㅈㄹ더ㅐㅑafwefwae",
-      "createAt": "오후 11:56:46",
-      "id": 1670857006246
+      "postId": 7,
+      "text": "ㅁㅈ대ㅑ러",
+      "createAt": "오후 6:00:59",
+      "id": 1670922059418
     },
     {
-      "postId": 6,
-      "text": "afewfweaefw",
-      "createAt": "오후 11:56:46",
-      "id": 1670857006751
+      "postId": 7,
+      "text": "ㅁㅈㄷ래ㅑㅓ",
+      "createAt": "오후 6:01:00",
+      "id": 1670922060066
+    },
+    {
+      "postId": 7,
+      "text": "ㅁㅈㄷ러ㅑㅔ",
+      "createAt": "오후 6:01:00",
+      "id": 1670922060741
     }
   ],
   "profile": {
