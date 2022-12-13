@@ -5,15 +5,17 @@ import BoxCard from "./element/BoxCard";
 import Input from "../../ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { useAxios } from "./hooks/useAxios";
+import Label from '../../ui/Label';
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
 import { searchData } from "../../redux/modules/postSlice";
+import { getLabels } from '../../redux/modules/postSlice';
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
   const { error, isLoading, getData } = useAxios();
   const [input, changeHander] = useInput({});
-  const { todo: todolist, searchTodo } = useSelector(
+  const { todo: todolist, searchTodo, labels } = useSelector(
     (state) => state.postReducer
   );
   const dispatch = useDispatch();
@@ -21,13 +23,13 @@ const Intro = () => {
 
   useEffect(() => {
     getData("posts");
+    dispatch(getLabels());
   }, []);
 
   const onClickHandler = () => {
     setOpenModal(true);
   };
   const enterKeyHandler = async (e) => {
-    console.log(window.event.keyCode);
     if (window.event.keyCode === 13) {
       dispatch(searchData(input.search));
     }
@@ -71,8 +73,10 @@ const Intro = () => {
               justify="space-between"
               padding="5px"
             >
-              <Box bgColor="yellow" height="80%" width="40%" margin="0">
-                Label
+              <Box justify="space-around" bgColor="yellow" height="80%" width="40%" margin="0">
+                {labels.map((label, index) => {
+                  return <Label key={index}>{label.name}</Label>
+                })}
               </Box>
               <Button onClick={onClickHandler}>Icon</Button>
             </Box>
