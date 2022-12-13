@@ -6,7 +6,7 @@ import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
-import Label from '../../../ui/Label';
+import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
@@ -14,7 +14,6 @@ const Modal = ({ modal, onClick }) => {
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    // console.log(label);
     const today = new Date();
     const createdAt = today.toLocaleString("ko");
     const doc = { ...input, createdAt, label };
@@ -53,10 +52,19 @@ const Modal = ({ modal, onClick }) => {
                 change={changeHander}
               ></Input>
               <Box justify="flex-start">
-                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>Redux</Label>
-                <Label onClick={() => changeLabel("React")} value={"React"}>React</Label>
-                <Label onClick={() => changeLabel("Javascript")} value={"Javascript"}>Javascript</Label>
-                </Box>
+                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>
+                  Redux
+                </Label>
+                <Label onClick={() => changeLabel("React")} value={"React"}>
+                  React
+                </Label>
+                <Label
+                  onClick={() => changeLabel("Javascript")}
+                  value={"Javascript"}
+                >
+                  Javascript
+                </Label>
+              </Box>
             </Box>
             <Box>
               <Button
