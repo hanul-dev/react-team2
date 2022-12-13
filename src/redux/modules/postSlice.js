@@ -1,9 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  current,
-  isRejectedWithValue,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const instance = axios.create({
@@ -11,24 +6,38 @@ const instance = axios.create({
   headers: { "X-Custom-Header": "foobar" },
   timeout: 1000,
 });
-// 검색기능을 해야하니까 일단 db에서 title을 매칭시켜야되겠다.
-// db의 모든 글을 가져와서 내가 검색한 title이랑 비교해서 맞으면 state로 return해야겠다.
+
 export const searchData = createAsyncThunk(
   "postSlice/searchData",
   async (title, thunkAPI) => {
     try {
       const res = await instance.get("/posts");
       const result = await res.data.filter((el) => el.title === title);
-      return result;
+      return thunkAPI.fulfillWithValue(result);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-console.log(searchData);
+
+export const getLabels = createAsyncThunk(
+  "postSlice/getLabels",
+  async (labels, thunkAPI) => {
+    try {
+      const response = await instance.get("/labels");
+
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const initial = {
   todo: [],
   searchTodo: [],
+  labels: [],
+  isloading: "false",
 };
 const postSlice = createSlice({
   name: "todo",
@@ -46,13 +55,32 @@ const postSlice = createSlice({
       state.todo = state.todo.filter((el) => el.id !== action.payload);
     },
   },
+
   extraReducers: {
-    [searchData.pending]: (state, { payload }) => {},
+    [searchData.pending]: (state, action) => {
+      state.isloading = true;
+    },
+
     [searchData.fulfilled]: (state, { payload }) => {
+      state.isloading = false;
       state.searchTodo = [...payload];
     },
-    [searchData.rejected]: (state, { payload }) => {
-      console.log(payload);
+
+    [searchData.rejected]: (state, action) => {
+      state.isloading = false;
+      state.error = action.payload;
+    },
+    [getLabels.pending]: (state, action) => {
+      state.isloading = true;
+    },
+    [getLabels.fulfilled]: (state, action) => {
+      state.isloading = false;
+
+      state.labels = action.payload;
+    },
+    [getLabels.rejected]: (state, action) => {
+      state.isloading = false;
+      state.error = action.payload;
     },
   },
 });

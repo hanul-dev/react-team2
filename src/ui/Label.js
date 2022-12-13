@@ -36,25 +36,18 @@ const Label = ({
 };
 // props 정리, props의 타입모듈.
 Label.defaultProps = {
-  diplay: "inline-block",
-  bgColor: "black",
-  color: "white",
-  height: "25px",
-  radius: "15px",
-  opacity: 1,
   onclick: () => {},
-  shadow: "none",
 };
 
 const StLabel = styled.div`
-  background-color: ${({ bgColor }) => bgColor};
-  color: ${({ color }) => color};
-  border-radius: ${({ radius }) => radius};
-  opacity: ${({ opacity }) => opacity};
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  box-shadow: ${({ shadow }) => shadow};
-  border: ${({ border }) => border};
+  display: inline-block;
+  background-color: #e6b5b8;
+  color: white;
+  opacity: 1;
+  width: 80px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
   cursor: pointer;
   pointer-events: ${({ event }) => event};
   padding: 3px;
