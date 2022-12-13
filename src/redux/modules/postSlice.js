@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "http://localho123st:3001",
   headers: { "X-Custom-Header": "foobar" },
   timeout: 1000,
 });
@@ -15,10 +15,14 @@ const instance = axios.create({
 // db의 모든 글을 가져와서 내가 검색한 title이랑 비교해서 맞으면 state로 return해야겠다.
 export const searchData = createAsyncThunk(
   "postSlice/searchData",
-  async (title) => {
-    const res = await instance.get("/posts");
-    const result = await res.data.filter((el) => el.title === title);
-    return result;
+  async (title, thunkAPI) => {
+    try {
+      const res = await instance.get("/posts");
+      const result = await res.data.filter((el) => el.title === title);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 console.log(searchData);
@@ -43,11 +47,13 @@ const postSlice = createSlice({
     },
   },
   extraReducers: {
-    [searchData.pending]: (state, action) => {},
+    [searchData.pending]: (state, { payload }) => {},
     [searchData.fulfilled]: (state, { payload }) => {
       state.searchTodo = [...payload];
     },
-    [searchData.rejected]: (state, action) => {},
+    [searchData.rejected]: (state, { payload }) => {
+      console.log(payload);
+    },
   },
 });
 
