@@ -1,54 +1,51 @@
 {
   "posts": [
     {
-      "title": "react",
-      "content": "react",
-      "createdAt": "2022. 12. 13. 오전 2:37:03",
-      "label": "React",
+      "title": "test1",
+      "content": "test1",
+      "postId": 5782,
+      "createdAt": 1670613087554,
       "id": 1
     },
     {
-      "title": "JS",
-      "content": "JS",
-      "createdAt": "2022. 12. 13. 오전 2:37:08",
-      "label": "Javascript",
+      "title": "test2",
+      "content": "test2",
+      "postId": 9848,
+      "createdAt": 1670613090498,
       "id": 2
     },
     {
-      "title": "Redux",
-      "content": "Redux",
-      "createdAt": "2022. 12. 13. 오전 2:37:14",
-      "label": "Redux",
+      "title": "test3",
+      "content": "test3",
+      "postId": 9645,
+      "createdAt": 1670613090923,
       "id": 3
     },
     {
-      "title": "Redux2",
-      "content": "Redux2",
-      "createdAt": "2022. 12. 13. 오전 2:37:20",
-      "label": "Redux",
+      "title": "test4",
+      "content": "test4",
+      "postId": 5266,
+      "createdAt": 1670613091138,
       "id": 4
     },
     {
-      "title": "Redux3",
-      "content": "Redux3",
-      "createdAt": "2022. 12. 13. 오전 2:37:29",
-      "label": "Redux",
+      "title": "test5",
+      "content": "test5",
+      "createdAt": 1670613162565,
       "id": 5
+
+
+    }
+
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     }
   ],
-  "comments": [],
   "profile": {
     "name": "typicode"
-  },
-  "labels": [
-    {
-      "Redux": "Redux"
-    },
-    {
-      "React": "React"
-    },
-    {
-      "Axios": "Axios"
-    }
-  ]
+  }
 }
