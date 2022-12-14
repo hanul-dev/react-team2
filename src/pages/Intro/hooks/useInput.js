@@ -15,12 +15,15 @@ const useInput = (inputValue) => {
   const [label, setLabel] = useState("");
   const changeLabel = (label) => {
     setLabel(label);
-  }
+  };
   const reset = () => {
-    setInput("");
-  }
-  return [input, changeHandler, label, changeLabel, reset ];
-  
+    setInput({
+      title: "",
+      content: "",
+      search: "",
+    });
+  };
+  return { input, changeHandler, label, changeLabel, reset };
 };
 
 export default useInput;
