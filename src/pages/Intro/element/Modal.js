@@ -10,15 +10,16 @@ import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander, label, changeLabel] = useInput({});
+  const [input, changeHander, label, changeLabel, reset] = useInput({});
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
     const today = new Date();
-    const createdAt = today.toLocaleString("ko");
+    const createdAt = today.toLocaleDateString("ko",{year:'numeric', month:'long', day:'numeric',} );
     const doc = { ...input, createdAt, label };
     dispatch(addTodo(doc));
     onClick();
+    reset();
   };
 
   const styles = { modal };

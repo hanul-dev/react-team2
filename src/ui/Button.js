@@ -53,7 +53,7 @@ const StBtn = styled.button`
   box-shadow: ${({ shadow }) => shadow};
   border: ${({ border }) => border};
   cursor: pointer;
-  padding: 7px 20px;
+  padding: 7px 10px;
   &:hover {
     outline: none;
     opacity: 0.8;
