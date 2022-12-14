@@ -12,6 +12,7 @@ import {
   searchData,
   getLabels,
   searchLabels,
+  initTodo,
 } from "../../redux/modules/postSlice";
 
 const Intro = () => {
@@ -79,6 +80,13 @@ const Intro = () => {
                 keyup={enterKeyHandler}
               ></Input>
               <Button onClick={enterData}>Enter</Button>
+              <Button
+                onClick={() => {
+                  dispatch(initTodo());
+                }}
+              >
+                전체보기
+              </Button>
             </Box>
             <Box
               width="100%"
