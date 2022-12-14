@@ -18,8 +18,10 @@ const Input = ({
   id,
   margin,
   keyup,
+  keypress,
   holder,
   height,
+  padding,
 }) => {
   const styles = {
     width,
@@ -35,6 +37,7 @@ const Input = ({
     value,
     height,
     margin,
+    padding,
   };
   return (
     <StInput
@@ -42,6 +45,7 @@ const Input = ({
       placeholder={holder}
       onChange={change}
       onKeyUp={keyup}
+      onKeyPress={keypress}
       id={id}
     >
       {children}
@@ -54,17 +58,18 @@ Input.defaultProps = {
   height: "2em",
   bgColor: "none",
   color: "black",
-  border: "none",
-  radius: "0px",
-  shadow: "0px 0px 6px #333",
+  border: "1px solid #333",
+  radius: "8px",
   opacity: 1,
-  ta: "center",
+  ta: "left",
   type: "text",
   name: "",
   value: "",
   change: (e) => {},
   keyup: (e) => {},
+  keypress: (e) => {},
   margin: "0",
+  padding: "10px",
   holder: "",
 };
 
@@ -82,9 +87,9 @@ const StInput = styled.input`
   name: ${({ name }) => name};
   value: ${({ value }) => value};
   margin: ${({ margin }) => margin};
+  padding: ${({ padding }) => padding};
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 6px rgba(100, 58, 199);
   }
 `;
 

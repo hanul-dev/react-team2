@@ -1,8 +1,7 @@
-import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { deleteTodo } from "../../../redux/modules/postSlice";
+import { deleteData } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Card from "../../../ui/Card";
@@ -13,24 +12,37 @@ const BoxCard = ({ el }) => {
   return (
     <Card
       width="250px"
-      height="200px"
+      height="350px"
       radius="12px"
-      bgColor="whiteSmoke"
+      padding="0 10px"
       direction="column"
+      justify="flex-start"
     >
-      <Box>
-        <Label event="none">{el.label}</Label>
+      <Box
+        direction="row"
+        justify="space-between"
+        height="15%"
+        padding="15px 0 0"
+      >
+        {el.createdAt}
         <NavLink to={`/detail/${el.id}`}>
-          <>상세보기</>
+          <Button width="80px">Detail</Button>
         </NavLink>
       </Box>
-      <Box>{el.title}</Box>
+      <Box height="20%" justify="space-between">
+        {el.title}
+        <Label event="none">{el.label}</Label>
+      </Box>
+      <Box height="50%" justify="flex-start">
+        {el.content}
+      </Box>
+
       <Button
         onClick={() => {
-          dispatch(deleteTodo(el.id));
+          dispatch(deleteData(el.id));
         }}
       >
-        삭제
+        Delete
       </Button>
     </Card>
   );
