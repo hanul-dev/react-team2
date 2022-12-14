@@ -1,3 +1,4 @@
+import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import React from "react";
 import styled from "styled-components";
 
@@ -19,6 +20,7 @@ const Box = ({
   height,
   position,
   flexWrap,
+  overflow,
 }) => {
   const styles = {
     width,
@@ -37,12 +39,14 @@ const Box = ({
     height,
     position,
     flexWrap,
+    overflow,
   };
   return <StCard {...styles}>{children}</StCard>;
 };
 
 Box.defaultProps = {
   width: "100%",
+  overflow: "auto",
   height: "100%",
   display: "flex",
   align: "center",
@@ -56,8 +60,7 @@ Box.defaultProps = {
   opacity: 1,
   margin: "0 auto",
   position: "",
-  flexWrap: "wrap",
-
+  flexWrap: "",
 };
 const StCard = styled.div`
   width: ${({ width }) => width};
@@ -66,6 +69,7 @@ const StCard = styled.div`
   align-items: ${({ align }) => align};
   justify-content: ${({ justify }) => justify};
   flex-direction: ${({ direction }) => direction};
+  flex-wrap: ${({ flexWrap }) => flexWrap};
   background-color: ${({ bgColor }) => bgColor};
   color: ${({ color }) => color};
   border: ${({ border }) => border};
@@ -75,6 +79,7 @@ const StCard = styled.div`
   box-shadow: ${({ shadow }) => shadow};
   margin: ${({ margin }) => margin};
   position: ${({ position }) => position};
+  overflow: ${({ overflow }) => overflow};
 `;
 
 export default Box;

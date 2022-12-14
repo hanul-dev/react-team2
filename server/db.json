@@ -1,13 +1,6 @@
 {
   "posts": [
     {
-      "title": "ㅁㅈㄷㄹ",
-      "content": "ㅁㄷㅈㄹ",
-      "id": "id1",
-      "createdAt": "2022년 12월 14일",
-      "label": ""
-    },
-    {
       "title": "ㄹㅁㅈㄷ",
       "content": "ㅁㄹㅈㄷ",
       "id": "id2",
@@ -15,25 +8,18 @@
       "label": "Javascript"
     },
     {
-      "title": "awef",
-      "content": "afwe",
-      "id": "ba19aa12-eb35-43d7-9a8d-5319734f38d1",
-      "createdAt": "2022년 12월 14일",
-      "label": "Javascript"
-    },
-    {
-      "title": "wfea",
-      "content": "afwe",
-      "id": "e9c3ce90-4196-4d89-88b4-9b6df0fcd8a7",
-      "createdAt": "2022년 12월 14일",
-      "label": "React"
-    },
-    {
       "title": "afew",
       "content": "awfe",
       "id": "1cec2e9b-5a58-468e-a32a-b8e069538143",
       "createdAt": "2022년 12월 14일",
       "label": "React"
+    },
+    {
+      "title": "ewfa",
+      "content": "awfe",
+      "id": "790fc2f3-abcc-4122-80e9-b5d94ee93032",
+      "createdAt": "2022년 12월 15일",
+      "label": ""
     }
   ],
   "comments": [

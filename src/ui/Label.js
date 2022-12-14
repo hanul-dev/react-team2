@@ -47,6 +47,7 @@ Label.defaultProps = {
 const StLabel = styled.div`
   display: flex;
   background-color: #e6b5b8;
+  font-size: 12px;
   color: white;
   opacity: 1;
   width: 80px;
