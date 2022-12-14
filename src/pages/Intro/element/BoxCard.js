@@ -12,19 +12,23 @@ const BoxCard = ({ el }) => {
   const dispatch = useDispatch();
   return (
     <Card
-      width="200px"
-      height="200px"
+      width="250px"
+      height="300px"
       radius="12px"
+      padding="0 10px"
       direction="column"
-      align="left"
+      justify="flex-start"
     >
-      <Box>
-        <Label event="none">{el.label}</Label>
+      <Box direction="row" justify="space-between" height="15%" padding="15px 0 0">{el.createdAt}
         <NavLink to={`/detail/${el.id}`}>
-          <>상세보기</>
+          <Button width="80px">상세보기</Button>
         </NavLink>
       </Box>
-      <Box>{el.title}</Box>
+      <Box height="20%" justify="space-between">{el.title}
+        <Label event="none">{el.label}</Label>
+      </Box>
+      <Box height="50%" justify="flex-start">{el.content}</Box>
+    
       <Button
         onClick={() => {
           dispatch(deleteTodo(el.id));

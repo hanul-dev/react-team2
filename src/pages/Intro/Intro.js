@@ -110,7 +110,7 @@ const Intro = () => {
                   );
                 })}
               </Box>
-              <Button onClick={onClickHandler}>Add</Button>
+              <Button onClick={onClickHandler}>추가</Button>
             </Box>
             <Box display={searchTodo !== null ? "flex" : "none"}>
               {searchTodo?.length > 0 ? (
@@ -129,7 +129,7 @@ const Intro = () => {
               ) : (
                 <p>검색결과가 없습니다.</p>
               )}
-            </Box>
+            </Box> 
             <Box
               display={
                 searchLabel === null && searchTodo === null ? "flex" : "none"
