@@ -36,7 +36,7 @@ const Button = ({
 Button.defaultProps = {
   bgColor: "transparent",
   color: "#d6a680",
-  radius: "0px",
+  radius: "8px",
   opacity: 1,
   onclick: () => {},
   shadow: "none",
@@ -53,8 +53,7 @@ const StBtn = styled.button`
   box-shadow: ${({ shadow }) => shadow};
   border: ${({ border }) => border};
   cursor: pointer;
-  padding: 8px 25px;
-  radius: 5px;
+  padding: 7px 10px;
   &:hover {
     outline: none;
     opacity: 0.8;

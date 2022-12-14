@@ -10,15 +10,16 @@ import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander, label, changeLabel] = useInput({});
+  const [input, changeHander, label, changeLabel, reset] = useInput({});
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
     const today = new Date();
-    const createdAt = today.toLocaleString("ko");
+    const createdAt = today.toLocaleDateString("ko",{year:'numeric', month:'long', day:'numeric',} );
     const doc = { ...input, createdAt, label };
     dispatch(addTodo(doc));
     onClick();
+    reset();
   };
 
   const styles = { modal };
@@ -27,16 +28,17 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
+            <Box direction="column" padding="10px 0">
             <h1>New Tesk</h1>
             <Box
               direction="column"
-              justify="flex-start"
+              justify="space-around"
               align="flex-start"
-              padding="10px"
+              padding="15px"
             >
               <label htmlFor="title">title</label>
               <Input
-                width="90%"
+                width="100%"
                 holder="제목"
                 id="title"
                 value={input.title}
@@ -45,7 +47,7 @@ const Modal = ({ modal, onClick }) => {
               ></Input>
               <label htmlFor="content">contents</label>
               <Input
-                width="90%"
+                width="100%"
                 height="40%"
                 holder="내용"
                 id="content"
@@ -53,7 +55,8 @@ const Modal = ({ modal, onClick }) => {
                 name="content"
                 change={changeHander}
               ></Input>
-              <Box justify="flex-start">
+              <label>Add label</label>
+              <Box height="10%" justify="space-around">
                 <Label onClick={() => changeLabel("Redux")}>Redux</Label>
                 <Label onClick={() => changeLabel("React")}>React</Label>
                 <Label onClick={() => changeLabel("Javascript")}>
@@ -61,7 +64,7 @@ const Modal = ({ modal, onClick }) => {
                 </Label>
               </Box>
             </Box>
-            <Box>
+            <Box height="10%" justify='flex-end'>
               <Button
                 onClick={() => {
                   onClick();
@@ -70,6 +73,7 @@ const Modal = ({ modal, onClick }) => {
                 Close
               </Button>
               <Button onClick={onCreateHandler}>Create</Button>
+            </Box>
             </Box>
           </StModal>
           <StBackDrop {...styles} onClick={onClick}></StBackDrop>
@@ -92,13 +96,13 @@ const StModal = styled.div`
     return modal ? "flex" : "none";
   }};
   width: 400px;
-  height: 300px;
+  height: 400px;
   background-color: white;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   border-radius: 12px;
-  box-shadow: 2px 2px 6px black;
+  box-shadow: 1px 1px 3px black;
 `;
 
 const StBackDrop = styled.div`
@@ -111,5 +115,5 @@ const StBackDrop = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: rgba(141, 141, 141, 0.8);
+  background-color: rgba(141, 141, 141, 0.3);
 `;

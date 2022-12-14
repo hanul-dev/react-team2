@@ -71,7 +71,6 @@ const postSlice = createSlice({
       state.todo = state.todo.filter((el) => el.id !== action.payload);
     },
     initTodo: (state, action) => {
-      console.log("in");
       state.searchTodo = null;
       state.searchLabel = null;
     },
