@@ -4,7 +4,7 @@ import {
   getComments,
   addComments,
   deleteComments,
-  updateComments
+  updateComments,
 } from "../../../../redux/modules/commentsSlice";
 import Comments from "../../Comments/components/Comments";
 
@@ -27,11 +27,11 @@ const CommentsContainer = ({ postId }) => {
   const onUpdateComments = (payload) => {
     dispatch(updateComments(payload));
   };
-  const id = parseInt(postId, 10);
+  
   return (
     <Comments
       comments={comments}
-      postId={id}
+      postId={postId}
       onAddComments={(payload) => {
         onAddComments(payload);
       }}

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+import { v4 as uuidv4 } from "uuid";
+
 const Comments = ({
   comments,
   onAddComments,
@@ -21,7 +23,7 @@ const Comments = ({
       postId: postId,
       text: commentInput,
       createAt: time,
-      id: Date.now(),
+      id: uuidv4(),
     };
     // id 생성 로직을 컴포넌트에 노출하는건 좋지 않은데 Slice 단에서 처리하는 방법
     // 그냥 onAddComents로 저 자료들을 넘기는 정도 밖에 생각이 나지 않는데
