@@ -41,6 +41,7 @@ Button.defaultProps = {
   onclick: () => {},
   shadow: "none",
   border: "1px solid #d6a680",
+  width: "80px",
 };
 
 const StBtn = styled.button`

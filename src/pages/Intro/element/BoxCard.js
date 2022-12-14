@@ -12,7 +12,7 @@ const BoxCard = ({ el }) => {
   return (
     <Card
       width="250px"
-      height="300px"
+      height="350px"
       radius="12px"
       padding="0 10px"
       direction="column"
@@ -26,7 +26,7 @@ const BoxCard = ({ el }) => {
       >
         {el.createdAt}
         <NavLink to={`/detail/${el.id}`}>
-          <Button width="80px">상세보기</Button>
+          <Button width="80px">Detail</Button>
         </NavLink>
       </Box>
       <Box height="20%" justify="space-between">
@@ -42,7 +42,7 @@ const BoxCard = ({ el }) => {
           dispatch(deleteData(el.id));
         }}
       >
-        삭제
+        Delete
       </Button>
     </Card>
   );
