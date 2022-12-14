@@ -15,6 +15,7 @@ const Input = ({
   name,
   value,
   change,
+  id,
   margin,
   keyup,
   holder,
@@ -36,7 +37,13 @@ const Input = ({
     margin,
   };
   return (
-    <StInput {...styles} placeholder={holder} onChange={change} onKeyUp={keyup}>
+    <StInput
+      {...styles}
+      placeholder={holder}
+      onChange={change}
+      onKeyUp={keyup}
+      id={id}
+    >
       {children}
     </StInput>
   );

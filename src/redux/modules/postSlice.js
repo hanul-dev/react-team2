@@ -70,6 +70,11 @@ const postSlice = createSlice({
       instance.delete(`/posts/${action.payload}`);
       state.todo = state.todo.filter((el) => el.id !== action.payload);
     },
+    initTodo: (state, action) => {
+      console.log("in");
+      state.searchTodo = null;
+      state.searchLabel = null;
+    },
   },
 
   extraReducers: {
@@ -114,5 +119,6 @@ const postSlice = createSlice({
   },
 });
 
-export const { initialTodos, addTodo, deleteTodo } = postSlice.actions;
+export const { initialTodos, addTodo, deleteTodo, initTodo } =
+  postSlice.actions;
 export default postSlice.reducer;
