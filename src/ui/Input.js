@@ -18,6 +18,7 @@ const Input = ({
   id,
   margin,
   keyup,
+  keypress,
   holder,
   height,
   padding
@@ -44,6 +45,7 @@ const Input = ({
       placeholder={holder}
       onChange={change}
       onKeyUp={keyup}
+      onKeyPress={keypress}
       id={id}
     >
       {children}
@@ -65,6 +67,7 @@ Input.defaultProps = {
   value: "",
   change: (e) => {},
   keyup: (e) => {},
+  keypress: (e) => {},
   margin: "0",
   padding: "10px",
   holder: "",
