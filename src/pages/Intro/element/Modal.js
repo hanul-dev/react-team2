@@ -27,13 +27,12 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
-            <Box direction="column">
-              <h3>New Tesk</h3>
-              <Box
-                direction="column"
-                justify="flex-start"
-                align="flex-start"
-                padding="10px"
+            <h1>New Tesk</h1>
+            <Box
+              direction="column"
+              justify="flex-start"
+              align="flex-start"
+              padding="10px"
             >
               <label htmlFor="title">title</label>
               <Input
@@ -62,6 +61,16 @@ const Modal = ({ modal, onClick }) => {
                 </Label>
               </Box>
             </Box>
+            <Box>
+              <Button
+                onClick={() => {
+                  onClick();
+                }}
+              >
+                Close
+              </Button>
+              <Button onClick={onCreateHandler}>Create</Button>
+            </Box>
           </StModal>
           <StBackDrop {...styles} onClick={onClick}></StBackDrop>
         </Fragment>,
@@ -89,7 +98,7 @@ const StModal = styled.div`
   justify-content: center;
   align-content: center;
   border-radius: 12px;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: 2px 2px 6px black;
 `;
 
 const StBackDrop = styled.div`
@@ -102,5 +111,5 @@ const StBackDrop = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: rgba(141, 141, 141, 0.3);
+  background-color: rgba(141, 141, 141, 0.8);
 `;
