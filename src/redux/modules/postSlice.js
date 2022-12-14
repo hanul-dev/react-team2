@@ -28,7 +28,6 @@ export const addData = createAsyncThunk(
       let result;
       const { search, ...doc } = data;
       const res = await instance.post("/posts", doc);
-      console.log(res);
       if (res.request.status === 201) {
         result = await instance.get("/posts");
         return result.data;
