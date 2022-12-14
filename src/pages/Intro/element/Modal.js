@@ -10,7 +10,7 @@ import Input from "../../../ui/Input";
 import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 import useValidation from "../hooks/useValidation";
-
+import { v4 as uuidv4 } from "uuid";
 const Modal = ({ modal, onClick }) => {
   const { input, changeHandler, label, changeLabel, reset } = useInput();
   const { isValid, lengthCheck } = useValidation();
@@ -24,7 +24,7 @@ const Modal = ({ modal, onClick }) => {
         month: "long",
         day: "numeric",
       });
-      const doc = { ...input, createdAt, label };
+      const doc = { ...input, id: uuidv4(), createdAt, label };
       dispatch(addData(doc));
       onClick();
       reset();

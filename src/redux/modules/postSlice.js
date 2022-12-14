@@ -23,9 +23,33 @@ export const addData = createAsyncThunk(
   "postSlice/addData",
   async (data, thunkAPI) => {
     try {
+      let result;
       const { search, ...doc } = data;
-      await instance.post("/posts", doc);
-      return thunkAPI.fulfillWithValue(doc);
+      const res = await instance.post("/posts", doc);
+      if (res.request.status === 201) {
+        result = await instance.get("/posts");
+        return result.data;
+      } else {
+        return thunkAPI.rejectWithValue({ message: "등록실패" });
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteData = createAsyncThunk(
+  "postSlice/deleteData",
+  async (data, thunkAPI) => {
+    try {
+      let result;
+      const res = await instance.delete(`/posts/${data}`);
+      if (res.request.status === 200) {
+        result = await instance.get("/posts");
+        return result.data;
+      } else {
+        return thunkAPI.rejectWithValue({ message: "등록실패" });
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -71,14 +95,6 @@ const postSlice = createSlice({
   name: "todo",
   initialState: initial,
   reducers: {
-    addTodo: (state, action) => {
-      instance.post("/posts", action.payload);
-      state.todo = [...state.todo, action.payload];
-    },
-    deleteTodo: (state, action) => {
-      instance.delete(`/posts/${action.payload}`);
-      state.todo = state.todo.filter((el) => el.id !== action.payload);
-    },
     initTodo: (state, action) => {
       state.searchTodo = null;
       state.searchLabel = null;
@@ -104,11 +120,25 @@ const postSlice = createSlice({
       state.isloading = true;
     },
     [addData.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.isloading = false;
-      state.todo = [...state.todo, payload];
+      state.todo = payload;
     },
     [addData.rejected]: (state, action) => {
+      state.isloading = false;
+      state.error = true;
+    },
+
+    //삭제기능
+    [deleteData.pending]: (state, action) => {
+      state.isloading = true;
+    },
+    [deleteData.fulfilled]: (state, { payload }) => {
+      state.searchTodo = null;
+      state.searchLabel = null;
+      state.isloading = false;
+      state.todo = payload;
+    },
+    [deleteData.rejected]: (state, action) => {
       state.isloading = false;
       state.error = true;
     },
