@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {sleep} from "../../utils/sleep"
+import { sleep } from "../../utils/sleep";
 
 const instance = axios.create({
   baseURL: "http://localhost:3001",
@@ -13,7 +13,7 @@ export const getData = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await instance.get("/posts");
-      await sleep(1500);
+      await sleep(500);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -28,6 +28,7 @@ export const addData = createAsyncThunk(
       let result;
       const { search, ...doc } = data;
       const res = await instance.post("/posts", doc);
+      console.log(res);
       if (res.request.status === 201) {
         result = await instance.get("/posts");
         return result.data;

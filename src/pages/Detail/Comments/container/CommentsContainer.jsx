@@ -6,13 +6,11 @@ import {
   deleteComments,
   updateComments,
 } from "../../../../redux/modules/commentsSlice";
-import Comments from "../../Comments/components/Comments";
+import Comments from "../components/Comments";
 
 const CommentsContainer = ({ postId }) => {
   const dispatch = useDispatch();
-  const { title, comments, content, createAt } = useSelector(
-    (state) => state.commentsReducer.comments
-  );
+  const { comments } = useSelector((state) => state.commentsReducer.comments);
 
   useEffect(() => {
     dispatch(getComments(postId));
@@ -27,7 +25,7 @@ const CommentsContainer = ({ postId }) => {
   const onUpdateComments = (payload) => {
     dispatch(updateComments(payload));
   };
-  
+
   return (
     <Comments
       comments={comments}

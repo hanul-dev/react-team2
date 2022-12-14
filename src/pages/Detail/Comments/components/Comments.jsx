@@ -1,7 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
-
 import { v4 as uuidv4 } from "uuid";
+import styled from "styled-components";
 
 const Comments = ({
   comments,
@@ -17,7 +16,6 @@ const Comments = ({
   const CommentsFormSubmitHandler = (event) => {
     event.preventDefault();
     const date = new Date();
-    // json-server key error 가 잦아서 임시변경
     const time = date.toLocaleTimeString("ko");
     const commentsData = {
       postId: postId,
@@ -25,9 +23,6 @@ const Comments = ({
       createAt: time,
       id: uuidv4(),
     };
-    // id 생성 로직을 컴포넌트에 노출하는건 좋지 않은데 Slice 단에서 처리하는 방법
-    // 그냥 onAddComents로 저 자료들을 넘기는 정도 밖에 생각이 나지 않는데
-    // 그러면 여기서 객체로 넘겨주는거랑 거기서 만드는게 무슨 차이가 있지 ?
     onAddComments(commentsData);
     setCommentInput("");
   };

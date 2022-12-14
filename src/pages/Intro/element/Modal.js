@@ -18,7 +18,7 @@ const Modal = ({ modal, onClick }) => {
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    if (isValid === true) {
+    if (isValid.title && isValid.content) {
       const today = new Date();
       const createdAt = today.toLocaleDateString("ko", {
         year: "numeric",
@@ -59,11 +59,11 @@ const Modal = ({ modal, onClick }) => {
                   value={input.title}
                   name="title"
                   change={changeHandler}
-                  keyup={() => lengthCheck(input.title)}
+                  keyup={(e) => lengthCheck("title", input.title, 10)}
                 ></Input>
-                {!isValid && (
+                {!isValid.title && (
                   <Validation>
-                    제목는 2자이상 10자 이하로 입력해주세요
+                    제목은 2자이상 10자 이하로 입력해주세요.
                   </Validation>
                 )}
                 <label htmlFor="content">contents</label>
@@ -75,7 +75,13 @@ const Modal = ({ modal, onClick }) => {
                   value={input.content}
                   name="content"
                   change={changeHandler}
+                  keyup={(e) => lengthCheck("content", input.content, 30)}
                 ></Input>
+                {!isValid.content && (
+                  <Validation>
+                    내용은 2자이상 30자 이하로 입력해주세요.
+                  </Validation>
+                )}
                 <label>Add label</label>
                 <Box height="10%" justify="space-around">
                   <Label onClick={() => changeLabel("Redux")}>Redux</Label>

@@ -50,7 +50,7 @@ const Intro = () => {
     dispatch(searchLabels(e.target.id));
   };
   return (
-    <Box width="80%" direction="column">
+    <Box width="100%" direction="column" overflow="hidden">
       {isloading ? <Loading /> : <></>}
       {error ? <ErrorPage /> : <></>}
       <Modal
