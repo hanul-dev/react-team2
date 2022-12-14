@@ -13,6 +13,7 @@ import {
   initTodo,
   getData,
 } from "../../redux/modules/postSlice";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -48,9 +49,9 @@ const Intro = () => {
     dispatch(searchLabels(e.target.id));
   };
   return (
-    <Box width="80%" direction="column">
+    <Box width="100%" direction="column">
       {isloading ? <p>로딩중이야</p> : <></>}
-      {error ? <p>에러야</p> : <></>}
+      {error ? <ErrorPage /> : <></>}
       <Modal
         modal={openModal}
         onClick={() => {
@@ -58,13 +59,13 @@ const Intro = () => {
         }}
         event="none"
       />
-      {!isloading ? (
+      {!isloading && !error ? (
         <>
-          <Box justify="flex-start" width="100%" height="60px">
+          <Box justify="flex-start" width="80%" height="60px">
             My Board
           </Box>
           <Box
-            width="100%"
+            width="80%"
             direction="column"
             height="80vh"
             border="1px solid"

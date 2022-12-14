@@ -95,7 +95,6 @@ const postSlice = createSlice({
   name: "todo",
   initialState: initial,
   reducers: {
-
     initTodo: (state, action) => {
       state.searchTodo = null;
       state.searchLabel = null;

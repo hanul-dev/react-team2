@@ -1,10 +1,13 @@
-  body {
+  .container {
     background: #000;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    margin: 0 0 0 0;
+    padding: 0;
 
   }
 
