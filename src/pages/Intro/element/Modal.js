@@ -34,34 +34,29 @@ const Modal = ({ modal, onClick }) => {
               align="flex-start"
               padding="10px"
             >
-              <label>title</label>
+              <label htmlFor="title">title</label>
               <Input
                 width="90%"
                 holder="제목"
+                id="title"
                 value={input.title}
                 name="title"
                 change={changeHander}
               ></Input>
-              <label>contents</label>
+              <label htmlFor="content">contents</label>
               <Input
                 width="90%"
                 height="40%"
                 holder="내용"
+                id="content"
                 value={input.content}
                 name="content"
                 change={changeHander}
               ></Input>
               <Box justify="flex-start">
-                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>
-                  Redux
-                </Label>
-                <Label onClick={() => changeLabel("React")} value={"React"}>
-                  React
-                </Label>
-                <Label
-                  onClick={() => changeLabel("Javascript")}
-                  value={"Javascript"}
-                >
+                <Label onClick={() => changeLabel("Redux")}>Redux</Label>
+                <Label onClick={() => changeLabel("React")}>React</Label>
+                <Label onClick={() => changeLabel("Javascript")}>
                   Javascript
                 </Label>
               </Box>
@@ -86,17 +81,6 @@ const Modal = ({ modal, onClick }) => {
 };
 
 export default Modal;
-
-// label => 유틸? 훅?
-// 리액트에서 use 파일앞에 => 그 함수안에서는 리액트 훅을 사용할 수 있음.
-// 리액트 훅은 컴포넌트 함수, use가 붙은 함수에서만 사용 가능
-
-// 라벨을 유틸로 => 라벨을 누르면 전역 상태가 변경되게
-// 라벨을 눌렀을 때 값을 받아오는(axios get) 유틸
-// axios get요청 response가 리듀서 or thunk 상태로 저장
-// => 렌더링
-
-// 훅 만들고 => response return => 화면 렌더링
 
 const StModal = styled.div`
   position: absolute;
