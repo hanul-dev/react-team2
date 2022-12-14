@@ -1,13 +1,7 @@
 {
-  "posts": [
-    {
-      "title": "test78",
-      "content": "test78",
-      "createdAt": "2022년 12월 14일",
-      "label": "React",
-      "id": 5
-    }
-  ],
+
+  "posts": [],
+
   "comments": [],
   "profile": {
     "name": "typicode"
