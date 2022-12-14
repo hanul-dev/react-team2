@@ -18,7 +18,7 @@ import {
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
   const { error, isLoading, getData } = useAxios();
-  const [input, changeHander] = useInput({});
+  const [input, changeHandler] = useInput({});
   const {
     todo: todolist,
     searchTodo,
@@ -47,7 +47,7 @@ const Intro = () => {
     dispatch(searchLabels(e.target.id));
   };
   return (
-    <Box width="80%" border="1px solid red" direction="column">
+    <Box width="80%" direction="column">
       {isLoading ? <p>로딩중이야</p> : <></>}
       {error ? <p>에러야</p> : <></>}
 
@@ -56,27 +56,29 @@ const Intro = () => {
         onClick={() => {
           setOpenModal(false);
         }}
+        event="none"
       />
       {!isLoading ? (
         <>
-          <Box width="100%" height="100px" border="1px solid blue" />
+          <Box justify="flex-start" width="100%" height="60px">My Board</Box>
           <Box
             width="100%"
             direction="column"
             height="80vh"
-            border="1px solid purple"
-            bgColor="grey"
+            border="1px solid"
+            radius="8px"
             align="center"
           >
-            <Box height="4rem">
+            <Box height="5rem" justify="flex-start">
               <Input
-                width="90%"
-                height="2rem"
-                margin="5px"
-                holder="검색"
+                width="50%"
+                height="50%"
+                margin="0 10px"
+                justify=""
+                holder="Keyword"
                 value={input.search}
                 name="search"
-                change={changeHander}
+                change={changeHandler}
                 keyup={enterKeyHandler}
               ></Input>
               <Button onClick={enterData}>Enter</Button>
@@ -95,13 +97,7 @@ const Intro = () => {
               justify="space-between"
               padding="5px"
             >
-              <Box
-                justify="space-around"
-                bgColor="yellow"
-                height="80%"
-                width="40%"
-                margin="0"
-              >
+              <Box justify="space-around" border="1px solid" height="70%" width="40%" margin="0">
                 {labels.map((label, index) => {
                   return (
                     <Label
@@ -114,7 +110,7 @@ const Intro = () => {
                   );
                 })}
               </Box>
-              <Button onClick={onClickHandler}>Icon</Button>
+              <Button onClick={onClickHandler}>Add</Button>
             </Box>
             <Box display={searchTodo !== null ? "flex" : "none"}>
               {searchTodo?.length > 0 ? (
