@@ -7,6 +7,31 @@ const instance = axios.create({
   timeout: 1000,
 });
 
+export const getData = createAsyncThunk(
+  "postSlice/getData",
+  async (data, thunkAPI) => {
+    try {
+      const res = await instance.get("/posts");
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const addData = createAsyncThunk(
+  "postSlice/addData",
+  async (data, thunkAPI) => {
+    try {
+      const { search, ...doc } = data;
+      await instance.post("/posts", doc);
+      return thunkAPI.fulfillWithValue(doc);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const searchData = createAsyncThunk(
   "postSlice/searchData",
   async (title, thunkAPI) => {
@@ -35,33 +60,17 @@ export const searchLabels = createAsyncThunk(
   }
 );
 
-export const getLabels = createAsyncThunk(
-  "postSlice/getLabels",
-  async (labels, thunkAPI) => {
-    try {
-      const response = await instance.get("/labels");
-      const result = [...response.data];
-      return thunkAPI.fulfillWithValue(result);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
 const initial = {
   todo: [],
   searchTodo: null,
   searchLabel: null,
-  labels: [],
-  isloading: "false",
+  isloading: false,
+  error: false,
 };
 const postSlice = createSlice({
   name: "todo",
   initialState: initial,
   reducers: {
-    initialTodos: (state, action) => {
-      state.todo = action.payload;
-    },
     addTodo: (state, action) => {
       instance.post("/posts", action.payload);
       state.todo = [...state.todo, action.payload];
@@ -77,6 +86,33 @@ const postSlice = createSlice({
   },
 
   extraReducers: {
+    //조회기능
+    [getData.pending]: (state, action) => {
+      state.isloading = true;
+    },
+    [getData.fulfilled]: (state, { payload }) => {
+      state.isloading = false;
+      state.todo = [...payload];
+    },
+    [getData.rejected]: (state, action) => {
+      state.isloading = false;
+      state.error = true;
+    },
+
+    //추가기능
+    [addData.pending]: (state, action) => {
+      state.isloading = true;
+    },
+    [addData.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      state.isloading = false;
+      state.todo = [...state.todo, payload];
+    },
+    [addData.rejected]: (state, action) => {
+      state.isloading = false;
+      state.error = true;
+    },
+
     //검색기능
     [searchData.pending]: (state, action) => {
       state.isloading = true;
@@ -88,7 +124,7 @@ const postSlice = createSlice({
     },
     [searchData.rejected]: (state, action) => {
       state.isloading = false;
-      state.error = action.payload;
+      state.error = true;
     },
     //라벨검색기능
     [searchLabels.pending]: (state, action) => {
@@ -101,19 +137,7 @@ const postSlice = createSlice({
     },
     [searchLabels.rejected]: (state, action) => {
       state.isloading = false;
-      state.error = action.payload;
-    },
-    //라벨추가를 위한 라벨 값 읽어오는 기능
-    [getLabels.pending]: (state, action) => {
-      state.isloading = true;
-    },
-    [getLabels.fulfilled]: (state, action) => {
-      state.isloading = false;
-      state.labels = action.payload;
-    },
-    [getLabels.rejected]: (state, action) => {
-      state.isloading = false;
-      state.error = action.payload;
+      state.error = true;
     },
   },
 });
