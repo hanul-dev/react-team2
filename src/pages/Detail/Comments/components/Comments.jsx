@@ -9,7 +9,6 @@ const Comments = ({
   onUpdateComments,
 }) => {
   const [commentInput, setCommentInput] = useState("");
-  const [updateMode, setUpdateMode] = useState(false); 
   const [updateId, setUpdateId] = useState(null);
   const [updateText, setUpdateText] = useState("");
 
@@ -39,12 +38,11 @@ const Comments = ({
     onDeleteComments(id);
   };
   const updateButtonHandler = (id, text) => {
-    if (!updateMode) {
-      setUpdateMode(!updateMode);
+    if (!updateId) {
       setUpdateId(id);
       setUpdateText(text);
     } else {
-      setUpdateMode(!updateMode);
+      setUpdateId("");
       onUpdateComments({ id, updateText });
     }
   };
@@ -57,7 +55,7 @@ const Comments = ({
         {comments?.map((comment) => {
           return (
             <StyledComment key={comment.id}>
-              {updateMode && updateId === comment.id ? (
+              {updateId === comment.id ? (
                 <input value={updateText} onChange={updateInputHandler} />
               ) : (
                 <p>{comment.text}</p>

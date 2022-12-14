@@ -40,6 +40,13 @@ export const commentsSlice = createSlice({
     addComments: (state, action) => {
       instance.post("/comments", action.payload);
       state.comments.comments.push(action.payload);
+      // 에러처리
+      // 로딩도 못잡아주고
+      // 신뢰성 있는 화면
+      // 실제로 서버에 들어간 값으로 구현을 해야한다. 눈속임 말고
+      // 당연히 될거라고 생각하고 화면을 보여줄 수 있지만
+      // 로딩과 예외처리를 확실하게 하는 개발자
+      // 에러메세지에 따라서 처리가 달라지는 경우
     },
     deleteComments: (state, action) => {
       instance.delete(`/comments/${action.payload}`);
