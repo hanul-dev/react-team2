@@ -12,12 +12,9 @@ import { useNavigate } from "react-router-dom";
 const PaintDetailContainer = ({ postId }) => {
   const pageStatus = useSelector((state) => state.detailReducer.posts).status;
   const state = useSelector((state) => state.detailReducer.posts);
-  console.log(state);
   const navigate = useNavigate();
-  // if (pageStatus === 200) {
-  //   console.log("1");
 
-  // }
+  console.log(postId);
 
   const [updateMode, setUpdateMode] = useState(false);
   const [reTitle, setReTitle] = useState("");
@@ -55,6 +52,7 @@ const PaintDetailContainer = ({ postId }) => {
   };
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(postId);
     dispatch(getData(postId));
   }, [dispatch]);
   return (

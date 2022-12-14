@@ -23,8 +23,9 @@ export const getData = createAsyncThunk(
     //6
     //비동기작업시작
     //try {
+
     const data = await instance.get("/posts"); // 9 서버에서 데이터 받아오기
-    const result = data.data.filter((el) => el.id === +action); // 10 원하는 모양으로 데이터 가공
+    const result = data.data.filter((el) => el.id === action); // 10 원하는 모양으로 데이터 가공
     return result; //11 가공한 데이터를 사용하기 위해 반환
     // } catch (err) {}
   }

@@ -17,12 +17,12 @@ export const getComments = createAsyncThunk(
     try {
       const postData = await instance.get("/posts");
       const result = postData.data.filter((e) => {
-        return e.id === parseInt(payload, 10);
+        return e.id === payload;
       });
 
       const commentsData = await instance.get("/comments");
       const postComments = commentsData.data.filter(
-        (e) => e.postId === parseInt(payload, 10)
+        (e) => e.postId === payload
       );
 
       const resultData = { ...result[0], comments: postComments };
