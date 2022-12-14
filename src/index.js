@@ -10,4 +10,4 @@ root.render(
   <Provider store={postStore}>
     <App />
   </Provider>
-);
+)

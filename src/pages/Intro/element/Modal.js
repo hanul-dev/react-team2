@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -6,16 +6,17 @@ import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
+import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander] = useInput({});
+  const [input, changeHander, label, changeLabel] = useInput({});
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
     const today = new Date();
     const createdAt = today.toLocaleString("ko");
-    const doc = { ...input, createdAt };
+    const doc = { ...input, createdAt, label };
     dispatch(addTodo(doc));
     onClick();
   };
@@ -26,41 +27,48 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
-            <h1>New Tesk</h1>
-            <Box
-              direction="column"
-              justify="flex-start"
-              align="flex-start"
-              padding="10px"
+            <Box direction="column">
+              <h3>New Tesk</h3>
+              <Box
+                direction="column"
+                justify="flex-start"
+                align="flex-start"
+                padding="10px"
             >
-              <label>title</label>
-              <Input
-                width="90%"
-                holder="제목"
-                value={input.title}
-                name="title"
-                change={changeHander}
-              ></Input>
-              <label>contents</label>
-              <Input
-                width="90%"
-                height="40%"
-                holder="내용"
-                value={input.content}
-                name="content"
-                change={changeHander}
-              ></Input>
-              <Box>Label</Box>
-            </Box>
-            <Box>
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
-              >
-                Close
-              </Button>
-              <Button onClick={onCreateHandler}>Create</Button>
+                <label>title</label>
+                <Input
+                  width="90%"
+                  holder="제목"
+                  value={input.title}
+                  name="title"
+                  change={changeHander}
+                ></Input>
+                <label>contents</label>
+                <Input
+                  width="90%"
+                  height="40%"
+                  holder="내용"
+                  value={input.content}
+                  name="content"
+                  change={changeHander}
+                ></Input>
+                <label>Add label</label>
+                <Box justify="center">
+                  <Label justify="center" align="center" onClick={() => changeLabel("Redux")} value={"Redux"}>Redux</Label>
+                  <Label justify="center" align="center" onClick={() => changeLabel("React")} value={"React"}>React</Label>
+                  <Label justify="center" align="center" onClick={() => changeLabel("Javascript")} value={"Javascript"}>Javascript</Label>
+                </Box>
+              </Box>
+              <Box height="25%" justify='flex-end'>
+                <Button
+                  onClick={() => {
+                    onClick();
+                  }}
+                >
+                  Close
+                </Button>
+                <Button onClick={onCreateHandler}>Create</Button>
+              </Box>
             </Box>
           </StModal>
           <StBackDrop {...styles} onClick={onClick}></StBackDrop>
@@ -100,7 +108,7 @@ const StModal = styled.div`
   justify-content: center;
   align-content: center;
   border-radius: 12px;
-  box-shadow: 2px 2px 6px black;
+  box-shadow: 1px 1px 3px black;
 `;
 
 const StBackDrop = styled.div`
@@ -113,5 +121,5 @@ const StBackDrop = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: rgba(141, 141, 141, 0.8);
+  background-color: rgba(141, 141, 141, 0.3);
 `;
