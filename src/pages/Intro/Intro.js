@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Label from "../../ui/Label";
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
+import Loading from './../LoadingPage/Loading';
 import {
   searchData,
   searchLabels,
@@ -49,7 +50,7 @@ const Intro = () => {
   };
   return (
     <Box width="80%" direction="column">
-      {isloading ? <p>로딩중이야</p> : <></>}
+      {isloading ? <Loading/> : <></>}
       {error ? <p>에러야</p> : <></>}
       <Modal
         modal={openModal}
