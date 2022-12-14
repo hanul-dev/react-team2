@@ -1,23 +1,39 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
+import Validation from '../../../ui/Validation';
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
+import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
+import useValidation from '../hooks/useValidation';
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander] = useInput({});
+  const { input, changeHandler, label, changeLabel, reset } = useInput();
+  const {isValid, lengthCheck } = useValidation();
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    const today = new Date();
-    const createdAt = today.toLocaleString("ko");
-    const doc = { ...input, createdAt };
-    dispatch(addTodo(doc));
+    if (isValid === true) {
+      const today = new Date();
+      const createdAt = today.toLocaleDateString("ko", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      const doc = { ...input, createdAt, label };
+      dispatch(addTodo(doc));
+      onClick();
+      reset();
+    }
+  };
+
+  const closeModalHandler = () => {
     onClick();
+    reset();
   };
 
   const styles = { modal };
@@ -26,44 +42,51 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
-            <h1>New Tesk</h1>
-            <Box
-              direction="column"
-              justify="flex-start"
-              align="flex-start"
-              padding="10px"
-            >
-              <label>title</label>
-              <Input
-                width="90%"
-                holder="제목"
-                value={input.title}
-                name="title"
-                change={changeHander}
-              ></Input>
-              <label>contents</label>
-              <Input
-                width="90%"
-                height="40%"
-                holder="내용"
-                value={input.content}
-                name="content"
-                change={changeHander}
-              ></Input>
-              <Box>Label</Box>
-            </Box>
-            <Box>
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
+            <Box direction="column" padding="10px 0">
+              <h1>New Tesk</h1>
+              <Box
+                direction="column"
+                justify="space-around"
+                align="flex-start"
+                padding="15px"
               >
-                Close
-              </Button>
-              <Button onClick={onCreateHandler}>Create</Button>
+                <label htmlFor="title">title</label>
+                <Input
+                  width="100%"
+                  holder="제목"
+                  id="title"
+                  value={input.title}
+                  name="title"
+                  change={changeHandler}
+                  keyup={() => lengthCheck(input.title)}
+                ></Input>
+                {!isValid && <Validation>제목는 2자이상 10자 이하로 입력해주세요</Validation>}
+                <label htmlFor="content">contents</label>
+                <Input
+                  width="100%"
+                  height="40%"
+                  holder="내용"
+                  id="content"
+                  value={input.content}
+                  name="content"
+                  change={changeHandler}
+                ></Input>
+                <label>Add label</label>
+                <Box height="10%" justify="space-around">
+                  <Label onClick={() => changeLabel("Redux")}>Redux</Label>
+                  <Label onClick={() => changeLabel("React")}>React</Label>
+                  <Label onClick={() => changeLabel("Javascript")}>
+                    Javascript
+                  </Label>
+                </Box>
+              </Box>
+              <Box height="10%" justify="flex-end">
+                <Button onClick={closeModalHandler}>Close</Button>
+                <Button onClick={onCreateHandler}>Create</Button>
+              </Box>
             </Box>
           </StModal>
-          <StBackDrop {...styles} onClick={onClick}></StBackDrop>
+          <StBackDrop {...styles} onClick={closeModalHandler}></StBackDrop>
         </Fragment>,
         document.getElementById("root")
       )}
@@ -72,17 +95,6 @@ const Modal = ({ modal, onClick }) => {
 };
 
 export default Modal;
-
-// label => 유틸? 훅?
-// 리액트에서 use 파일앞에 => 그 함수안에서는 리액트 훅을 사용할 수 있음.
-// 리액트 훅은 컴포넌트 함수, use가 붙은 함수에서만 사용 가능
-
-// 라벨을 유틸로 => 라벨을 누르면 전역 상태가 변경되게
-// 라벨을 눌렀을 때 값을 받아오는(axios get) 유틸
-// axios get요청 response가 리듀서 or thunk 상태로 저장
-// => 렌더링
-
-// 훅 만들고 => response return => 화면 렌더링
 
 const StModal = styled.div`
   position: absolute;
@@ -94,13 +106,13 @@ const StModal = styled.div`
     return modal ? "flex" : "none";
   }};
   width: 400px;
-  height: 300px;
+  height: 400px;
   background-color: white;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   border-radius: 12px;
-  box-shadow: 2px 2px 6px black;
+  box-shadow: 1px 1px 3px black;
 `;
 
 const StBackDrop = styled.div`
@@ -113,5 +125,5 @@ const StBackDrop = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: rgba(141, 141, 141, 0.8);
+  background-color: rgba(141, 141, 141, 0.3);
 `;

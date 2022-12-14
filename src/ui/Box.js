@@ -18,6 +18,7 @@ const Box = ({
   shadow,
   height,
   position,
+  flexWrap,
 }) => {
   const styles = {
     width,
@@ -35,6 +36,7 @@ const Box = ({
     padding,
     height,
     position,
+    flexWrap,
   };
   return <StCard {...styles}>{children}</StCard>;
 };
@@ -46,14 +48,16 @@ Box.defaultProps = {
   align: "center",
   justify: "center",
   direction: "row",
-  bgColor: "none",
-  color: "black",
+  bgColor: "transparent",
+  color: "#333333",
   border: "none",
   radius: "0px",
   shadow: "none",
   opacity: 1,
   margin: "0 auto",
   position: "",
+  flexWrap: "wrap",
+
 };
 const StCard = styled.div`
   width: ${({ width }) => width};

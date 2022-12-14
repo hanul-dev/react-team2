@@ -34,13 +34,13 @@ const Button = ({
 };
 // props 정리, props의 타입모듈.
 Button.defaultProps = {
-  bgColor: "none",
-  color: "black",
-  radius: "0px",
+  bgColor: "transparent",
+  color: "#d6a680",
+  radius: "8px",
   opacity: 1,
   onclick: () => {},
   shadow: "none",
-  border: "1px solid black",
+  border: "1px solid #d6a680",
 };
 
 const StBtn = styled.button`
@@ -53,7 +53,7 @@ const StBtn = styled.button`
   box-shadow: ${({ shadow }) => shadow};
   border: ${({ border }) => border};
   cursor: pointer;
-  padding: 3px;
+  padding: 7px 10px;
   &:hover {
     outline: none;
     opacity: 0.8;
