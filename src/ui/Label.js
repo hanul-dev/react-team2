@@ -11,6 +11,7 @@ const Label = ({
   width,
   align,
   justify,
+  id,
   height,
   hover,
   shadow,
@@ -33,7 +34,7 @@ const Label = ({
     event,
   };
   return (
-    <StLabel {...styles} onClick={onClick}>
+    <StLabel {...styles} onClick={onClick} id={id}>
       {children}
     </StLabel>
   );

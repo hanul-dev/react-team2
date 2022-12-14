@@ -1,47 +1,28 @@
 {
   "posts": [
     {
-      "title": "test1",
-      "content": "test1",
-      "postId": 5782,
-      "createdAt": 1670613087554,
+      "title": "1231",
+      "content": "23123123123",
+      "createdAt": "2022. 12. 14. 오전 1:46:12",
+      "label": "Javascript",
       "id": 1
     },
     {
-      "title": "test2",
-      "content": "test2",
-      "postId": 9848,
-      "createdAt": 1670613090498,
+      "title": "1231123123",
+      "content": "1233",
+      "createdAt": "2022. 12. 14. 오전 1:46:20",
+      "label": "React",
       "id": 2
     },
     {
-      "title": "test3",
-      "content": "test3",
-      "postId": 9645,
-      "createdAt": 1670613090923,
+      "title": "12312",
+      "content": "31233",
+      "createdAt": "2022. 12. 14. 오전 1:46:26",
+      "label": "Redux",
       "id": 3
-    },
-    {
-      "title": "test4",
-      "content": "test4",
-      "postId": 5266,
-      "createdAt": 1670613091138,
-      "id": 4
-    },
-    {
-      "title": "test5",
-      "content": "test5",
-      "createdAt": 1670613162565,
-      "id": 5
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   },

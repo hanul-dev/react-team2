@@ -5,21 +5,26 @@ import BoxCard from "./element/BoxCard";
 import Input from "../../ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { useAxios } from "./hooks/useAxios";
-import Label from '../../ui/Label';
+import Label from "../../ui/Label";
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
-import { searchData } from "../../redux/modules/postSlice";
-import { getLabels } from '../../redux/modules/postSlice';
+import {
+  searchData,
+  getLabels,
+  searchLabels,
+} from "../../redux/modules/postSlice";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
   const { error, isLoading, getData } = useAxios();
   const [input, changeHander] = useInput({});
-  const { todo: todolist, searchTodo, labels } = useSelector(
-    (state) => state.postReducer
-  );
+  const {
+    todo: todolist,
+    searchTodo,
+    labels,
+    searchLabel,
+  } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     getData("posts");
@@ -34,11 +39,17 @@ const Intro = () => {
       dispatch(searchData(input.search));
     }
   };
-
+  const enterData = async (e) => {
+    dispatch(searchData(input.search));
+  };
+  const onSearchLabelHandler = async (e) => {
+    dispatch(searchLabels(e.target.id));
+  };
   return (
     <Box width="80%" border="1px solid red" direction="column">
       {isLoading ? <p>로딩중이야</p> : <></>}
       {error ? <p>에러야</p> : <></>}
+
       <Modal
         modal={openModal}
         onClick={() => {
@@ -56,16 +67,19 @@ const Intro = () => {
             bgColor="grey"
             align="center"
           >
-            <Input
-              width="90%"
-              height="2rem"
-              margin="5px"
-              holder="검색"
-              value={input.search}
-              name="search"
-              change={changeHander}
-              keyup={enterKeyHandler}
-            ></Input>
+            <Box height="4rem">
+              <Input
+                width="90%"
+                height="2rem"
+                margin="5px"
+                holder="검색"
+                value={input.search}
+                name="search"
+                change={changeHander}
+                keyup={enterKeyHandler}
+              ></Input>
+              <Button onClick={enterData}>Enter</Button>
+            </Box>
             <Box
               width="100%"
               height="80px"
@@ -73,21 +87,57 @@ const Intro = () => {
               justify="space-between"
               padding="5px"
             >
-              <Box justify="space-around" bgColor="yellow" height="80%" width="40%" margin="0">
+              <Box
+                justify="space-around"
+                bgColor="yellow"
+                height="80%"
+                width="40%"
+                margin="0"
+              >
                 {labels.map((label, index) => {
-                  return <Label key={index}>{label.name}</Label>
+                  return (
+                    <Label
+                      key={index}
+                      id={label.name}
+                      onClick={onSearchLabelHandler}
+                    >
+                      {label.name}
+                    </Label>
+                  );
                 })}
               </Box>
               <Button onClick={onClickHandler}>Icon</Button>
             </Box>
-            <Box>
-              {searchTodo.length > 0
-                ? searchTodo.map((el, i) => {
-                    return <BoxCard key={`box${i}`} el={el} />;
-                  })
-                : todolist.map((el, i) => {
-                    return <BoxCard key={`box${i}`} el={el} />;
-                  })}
+            <Box display={searchTodo !== null ? "flex" : "none"}>
+              {searchTodo?.length > 0 ? (
+                searchTodo?.map((el, i) => {
+                  return <BoxCard key={`box${i}`} el={el} />;
+                })
+              ) : (
+                <p>검색결과가 없습니다.</p>
+              )}
+            </Box>
+            <Box display={searchLabel !== null ? "flex" : "none"}>
+              {searchLabel?.length > 0 ? (
+                searchLabel?.map((el, i) => {
+                  return <BoxCard key={`box${i}`} el={el} />;
+                })
+              ) : (
+                <p>검색결과가 없습니다.</p>
+              )}
+            </Box>
+            <Box
+              display={
+                searchLabel === null && searchTodo === null ? "flex" : "none"
+              }
+            >
+              {todolist?.length > 0 ? (
+                todolist?.map((el, i) => {
+                  return <BoxCard key={`box${i}`} el={el} />;
+                })
+              ) : (
+                <p>등록된 콘텐츠가 없습니다.</p>
+              )}
             </Box>
           </Box>
         </>

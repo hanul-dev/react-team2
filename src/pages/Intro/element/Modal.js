@@ -6,7 +6,7 @@ import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
-import Label from '../../../ui/Label';
+import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
@@ -14,7 +14,6 @@ const Modal = ({ modal, onClick }) => {
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    // console.log(label);
     const today = new Date();
     const createdAt = today.toLocaleString("ko");
     const doc = { ...input, createdAt, label };
@@ -28,6 +27,7 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
+
             <Box direction="column">
               <h3>New Tesk</h3>
               <Box
@@ -35,6 +35,44 @@ const Modal = ({ modal, onClick }) => {
                 justify="flex-start"
                 align="flex-start"
                 padding="10px"
+            >
+              <label>title</label>
+              <Input
+                width="90%"
+                holder="제목"
+                value={input.title}
+                name="title"
+                change={changeHander}
+              ></Input>
+              <label>contents</label>
+              <Input
+                width="90%"
+                height="40%"
+                holder="내용"
+                value={input.content}
+                name="content"
+                change={changeHander}
+              ></Input>
+              <Box justify="flex-start">
+                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>
+                  Redux
+                </Label>
+                <Label onClick={() => changeLabel("React")} value={"React"}>
+                  React
+                </Label>
+                <Label
+                  onClick={() => changeLabel("Javascript")}
+                  value={"Javascript"}
+                >
+                  Javascript
+                </Label>
+              </Box>
+            </Box>
+            <Box>
+              <Button
+                onClick={() => {
+                  onClick();
+                }}
               >
                 <label>title</label>
                 <Input
