@@ -27,7 +27,6 @@ const Modal = ({ modal, onClick }) => {
       {ReactDOM.createPortal(
         <Fragment>
           <StModal {...styles}>
-
             <Box direction="column">
               <h3>New Tesk</h3>
               <Box
@@ -36,44 +35,6 @@ const Modal = ({ modal, onClick }) => {
                 align="flex-start"
                 padding="10px"
             >
-              <label>title</label>
-              <Input
-                width="90%"
-                holder="제목"
-                value={input.title}
-                name="title"
-                change={changeHander}
-              ></Input>
-              <label>contents</label>
-              <Input
-                width="90%"
-                height="40%"
-                holder="내용"
-                value={input.content}
-                name="content"
-                change={changeHander}
-              ></Input>
-              <Box justify="flex-start">
-                <Label onClick={() => changeLabel("Redux")} value={"Redux"}>
-                  Redux
-                </Label>
-                <Label onClick={() => changeLabel("React")} value={"React"}>
-                  React
-                </Label>
-                <Label
-                  onClick={() => changeLabel("Javascript")}
-                  value={"Javascript"}
-                >
-                  Javascript
-                </Label>
-              </Box>
-            </Box>
-            <Box>
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
-              >
                 <label>title</label>
                 <Input
                   width="90%"
