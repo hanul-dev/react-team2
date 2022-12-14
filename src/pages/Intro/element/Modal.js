@@ -4,26 +4,31 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addTodo } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
+import Validation from '../../../ui/Validation';
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
 import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
+import useValidation from '../hooks/useValidation';
 
 const Modal = ({ modal, onClick }) => {
   const { input, changeHandler, label, changeLabel, reset } = useInput();
+  const {isValid, lengthCheck } = useValidation();
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    const today = new Date();
-    const createdAt = today.toLocaleDateString("ko", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    const doc = { ...input, createdAt, label };
-    dispatch(addTodo(doc));
-    onClick();
-    reset();
+    if (isValid === true) {
+      const today = new Date();
+      const createdAt = today.toLocaleDateString("ko", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      const doc = { ...input, createdAt, label };
+      dispatch(addTodo(doc));
+      onClick();
+      reset();
+    }
   };
 
   const closeModalHandler = () => {
@@ -53,7 +58,9 @@ const Modal = ({ modal, onClick }) => {
                   value={input.title}
                   name="title"
                   change={changeHandler}
+                  keyup={() => lengthCheck(input.title)}
                 ></Input>
+                {!isValid && <Validation>제목는 2자이상 10자 이하로 입력해주세요</Validation>}
                 <label htmlFor="content">contents</label>
                 <Input
                   width="100%"

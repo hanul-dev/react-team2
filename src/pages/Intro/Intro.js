@@ -32,12 +32,13 @@ const Intro = () => {
     dispatch(getLabels());
   }, []);
 
+
   const onClickHandler = () => {
     setOpenModal(true);
   };
 
   const enterKeyHandler = (e) => {
-    if (window.event.keyCode === 13) {
+    if (window.event.keyCode === 13 ) {
       dispatch(searchData(input.search));
       reset();
     }
@@ -74,26 +75,26 @@ const Intro = () => {
             radius="8px"
             align="center"
           >
-            <Box height="5rem" justify="flex-start">
-              <Input
-                width="50%"
-                height="50%"
-                margin="0 10px"
-                justify=""
-                holder="Keyword"
-                value={input.search}
-                name="search"
-                change={changeHandler}
-                keyup={enterKeyHandler}
-              ></Input>
-              <Button onClick={enterData}>Enter</Button>
-              <Button
-                onClick={() => {
-                  dispatch(initTodo());
-                }}
-              >
-                전체보기
-              </Button>
+            <Box height="100px" >
+              <Box direction="column" margin="0" width="70%" align="flex-start">
+                <Input
+                  width="80%"
+                  height="40%"
+                  holder="Keyword"
+                  value={input.search}
+                  name="search"
+                  change={changeHandler}
+                  keyup={enterKeyHandler}
+                ></Input>
+              </Box>
+                <Button onClick={enterData}>Enter</Button>
+                <Button
+                  onClick={() => {
+                    dispatch(initTodo());
+                  }}
+                >
+                  전체 보기
+                </Button>
             </Box>
             <Box
               width="100%"
