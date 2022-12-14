@@ -12,11 +12,11 @@ const BoxCard = ({ el }) => {
   const dispatch = useDispatch();
   return (
     <Card
-      width="250px"
+      width="200px"
       height="200px"
       radius="12px"
-      bgColor="whiteSmoke"
       direction="column"
+      align="left"
     >
       <Box>
         <Label event="none">{el.label}</Label>
