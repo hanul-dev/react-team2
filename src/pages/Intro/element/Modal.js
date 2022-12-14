@@ -10,14 +10,23 @@ import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
 
 const Modal = ({ modal, onClick }) => {
-  const [input, changeHander, label, changeLabel, reset] = useInput({});
+  const { input, changeHandler, label, changeLabel, reset } = useInput();
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
     const today = new Date();
-    const createdAt = today.toLocaleDateString("ko",{year:'numeric', month:'long', day:'numeric',} );
+    const createdAt = today.toLocaleDateString("ko", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
     const doc = { ...input, createdAt, label };
     dispatch(addTodo(doc));
+    onClick();
+    reset();
+  };
+
+  const closeModalHandler = () => {
     onClick();
     reset();
   };
@@ -29,54 +38,48 @@ const Modal = ({ modal, onClick }) => {
         <Fragment>
           <StModal {...styles}>
             <Box direction="column" padding="10px 0">
-            <h1>New Tesk</h1>
-            <Box
-              direction="column"
-              justify="space-around"
-              align="flex-start"
-              padding="15px"
-            >
-              <label htmlFor="title">title</label>
-              <Input
-                width="100%"
-                holder="제목"
-                id="title"
-                value={input.title}
-                name="title"
-                change={changeHander}
-              ></Input>
-              <label htmlFor="content">contents</label>
-              <Input
-                width="100%"
-                height="40%"
-                holder="내용"
-                id="content"
-                value={input.content}
-                name="content"
-                change={changeHander}
-              ></Input>
-              <label>Add label</label>
-              <Box height="10%" justify="space-around">
-                <Label onClick={() => changeLabel("Redux")}>Redux</Label>
-                <Label onClick={() => changeLabel("React")}>React</Label>
-                <Label onClick={() => changeLabel("Javascript")}>
-                  Javascript
-                </Label>
+              <h1>New Tesk</h1>
+              <Box
+                direction="column"
+                justify="space-around"
+                align="flex-start"
+                padding="15px"
+              >
+                <label htmlFor="title">title</label>
+                <Input
+                  width="100%"
+                  holder="제목"
+                  id="title"
+                  value={input.title}
+                  name="title"
+                  change={changeHandler}
+                ></Input>
+                <label htmlFor="content">contents</label>
+                <Input
+                  width="100%"
+                  height="40%"
+                  holder="내용"
+                  id="content"
+                  value={input.content}
+                  name="content"
+                  change={changeHandler}
+                ></Input>
+                <label>Add label</label>
+                <Box height="10%" justify="space-around">
+                  <Label onClick={() => changeLabel("Redux")}>Redux</Label>
+                  <Label onClick={() => changeLabel("React")}>React</Label>
+                  <Label onClick={() => changeLabel("Javascript")}>
+                    Javascript
+                  </Label>
+                </Box>
+              </Box>
+              <Box height="10%" justify="flex-end">
+                <Button onClick={closeModalHandler}>Close</Button>
+                <Button onClick={onCreateHandler}>Create</Button>
               </Box>
             </Box>
-            <Box height="10%" justify='flex-end'>
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
-              >
-                Close
-              </Button>
-              <Button onClick={onCreateHandler}>Create</Button>
-            </Box>
-            </Box>
           </StModal>
-          <StBackDrop {...styles} onClick={onClick}></StBackDrop>
+          <StBackDrop {...styles} onClick={closeModalHandler}></StBackDrop>
         </Fragment>,
         document.getElementById("root")
       )}

@@ -18,7 +18,7 @@ import {
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
   const { error, isLoading, getData } = useAxios();
-  const [input, changeHandler] = useInput({});
+  const { input, changeHandler, reset } = useInput();
   const {
     todo: todolist,
     searchTodo,
@@ -35,13 +35,16 @@ const Intro = () => {
   const onClickHandler = () => {
     setOpenModal(true);
   };
-  const enterKeyHandler = async (e) => {
+
+  const enterKeyHandler = (e) => {
     if (window.event.keyCode === 13) {
       dispatch(searchData(input.search));
+      reset();
     }
   };
   const enterData = async (e) => {
     dispatch(searchData(input.search));
+    reset();
   };
   const onSearchLabelHandler = async (e) => {
     dispatch(searchLabels(e.target.id));
@@ -60,7 +63,9 @@ const Intro = () => {
       />
       {!isLoading ? (
         <>
-          <Box justify="flex-start" width="100%" height="60px">My Board</Box>
+          <Box justify="flex-start" width="100%" height="60px">
+            My Board
+          </Box>
           <Box
             width="100%"
             direction="column"
@@ -97,7 +102,13 @@ const Intro = () => {
               justify="space-between"
               padding="5px"
             >
-              <Box justify="space-around" border="1px solid" height="70%" width="40%" margin="0">
+              <Box
+                justify="space-around"
+                border="1px solid"
+                height="70%"
+                width="40%"
+                margin="0"
+              >
                 {labels.map((label, index) => {
                   return (
                     <Label
@@ -129,7 +140,7 @@ const Intro = () => {
               ) : (
                 <p>검색결과가 없습니다.</p>
               )}
-            </Box> 
+            </Box>
             <Box
               display={
                 searchLabel === null && searchTodo === null ? "flex" : "none"
