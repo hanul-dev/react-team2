@@ -2,18 +2,19 @@ import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { addTodo } from "../../../redux/modules/postSlice";
+import { addData } from "../../../redux/modules/postSlice";
 import Box from "../../../ui/Box";
-import Validation from '../../../ui/Validation';
+import Validation from "../../../ui/Validation";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
 import Label from "../../../ui/Label";
 import useInput from "../hooks/useInput";
-import useValidation from '../hooks/useValidation';
+import useValidation from "../hooks/useValidation";
+import { v4 as uuidv4 } from "uuid";
 
 const Modal = ({ modal, onClick }) => {
   const { input, changeHandler, label, changeLabel, reset } = useInput();
-  const {isValid, lengthCheck } = useValidation();
+  const { isValid, lengthCheck } = useValidation();
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
@@ -24,8 +25,8 @@ const Modal = ({ modal, onClick }) => {
         month: "long",
         day: "numeric",
       });
-      const doc = { ...input, createdAt, label };
-      dispatch(addTodo(doc));
+      const doc = { ...input, id: uuidv4(), createdAt, label };
+      dispatch(addData(doc));
       onClick();
       reset();
     }
@@ -60,7 +61,11 @@ const Modal = ({ modal, onClick }) => {
                   change={changeHandler}
                   keyup={() => lengthCheck(input.title)}
                 ></Input>
-                {!isValid && <Validation>제목는 2자이상 10자 이하로 입력해주세요</Validation>}
+                {!isValid && (
+                  <Validation>
+                    제목는 2자이상 10자 이하로 입력해주세요
+                  </Validation>
+                )}
                 <label htmlFor="content">contents</label>
                 <Input
                   width="100%"

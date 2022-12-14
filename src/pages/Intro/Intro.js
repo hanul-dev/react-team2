@@ -4,41 +4,38 @@ import Button from "../../ui/Button";
 import BoxCard from "./element/BoxCard";
 import Input from "../../ui/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { useAxios } from "./hooks/useAxios";
 import Label from "../../ui/Label";
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
 import {
   searchData,
-  getLabels,
   searchLabels,
   initTodo,
+  getData,
 } from "../../redux/modules/postSlice";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { error, isLoading, getData } = useAxios();
   const { input, changeHandler, reset } = useInput();
   const {
     todo: todolist,
     searchTodo,
-    labels,
     searchLabel,
+    isloading,
+    error,
   } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getData("posts");
-    dispatch(getLabels());
-  }, []);
-
+    dispatch(getData());
+  }, [dispatch]);
 
   const onClickHandler = () => {
     setOpenModal(true);
   };
 
   const enterKeyHandler = (e) => {
-    if (window.event.keyCode === 13 ) {
+    if (window.event.keyCode === 13) {
       dispatch(searchData(input.search));
       reset();
     }
@@ -52,9 +49,8 @@ const Intro = () => {
   };
   return (
     <Box width="80%" direction="column">
-      {isLoading ? <p>로딩중이야</p> : <></>}
+      {isloading ? <p>로딩중이야</p> : <></>}
       {error ? <p>에러야</p> : <></>}
-
       <Modal
         modal={openModal}
         onClick={() => {
@@ -62,7 +58,7 @@ const Intro = () => {
         }}
         event="none"
       />
-      {!isLoading ? (
+      {!isloading ? (
         <>
           <Box justify="flex-start" width="100%" height="60px">
             My Board
@@ -75,7 +71,12 @@ const Intro = () => {
             radius="8px"
             align="center"
           >
-            <Box height="100px" >
+            <Box
+              height="120px"
+              display="flex"
+              justify="space-between"
+              padding="0px 20px"
+            >
               <Box direction="column" margin="0" width="70%" align="flex-start">
                 <Input
                   width="80%"
@@ -87,21 +88,26 @@ const Intro = () => {
                   keyup={enterKeyHandler}
                 ></Input>
               </Box>
-                <Button onClick={enterData}>Enter</Button>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <Button width="80px" onClick={enterData}>
+                  Enter
+                </Button>
                 <Button
+                  width="80px"
                   onClick={() => {
                     dispatch(initTodo());
                   }}
                 >
                   전체 보기
                 </Button>
+              </div>
             </Box>
             <Box
               width="100%"
               height="80px"
               bgColor="white"
               justify="space-between"
-              padding="5px"
+              padding="0px 20px"
             >
               <Box
                 justify="space-around"
@@ -110,21 +116,25 @@ const Intro = () => {
                 width="40%"
                 margin="0"
               >
-                {labels.map((label, index) => {
-                  return (
-                    <Label
-                      key={index}
-                      id={label.name}
-                      onClick={onSearchLabelHandler}
-                    >
-                      {label.name}
-                    </Label>
-                  );
-                })}
+                <Label id="Redux" onClick={onSearchLabelHandler}>
+                  Redux
+                </Label>
+                <Label id="React" onClick={onSearchLabelHandler}>
+                  React
+                </Label>
+                <Label id="Javascript" onClick={onSearchLabelHandler}>
+                  Javascript
+                </Label>
               </Box>
-              <Button onClick={onClickHandler}>추가</Button>
+              <Button width="80px" onClick={onClickHandler}>
+                추가
+              </Button>
             </Box>
-            <Box display={searchTodo !== null ? "flex" : "none"}>
+
+            <Box
+              flexWrap="wrap"
+              display={searchTodo !== null ? "flex" : "none"}
+            >
               {searchTodo?.length > 0 ? (
                 searchTodo?.map((el, i) => {
                   return <BoxCard key={`box${i}`} el={el} />;
@@ -133,7 +143,10 @@ const Intro = () => {
                 <p>검색결과가 없습니다.</p>
               )}
             </Box>
-            <Box display={searchLabel !== null ? "flex" : "none"}>
+            <Box
+              display={searchLabel !== null ? "flex" : "none"}
+              flexWrap="wrap"
+            >
               {searchLabel?.length > 0 ? (
                 searchLabel?.map((el, i) => {
                   return <BoxCard key={`box${i}`} el={el} />;
@@ -146,6 +159,7 @@ const Intro = () => {
               display={
                 searchLabel === null && searchTodo === null ? "flex" : "none"
               }
+              flexWrap="wrap"
             >
               {todolist?.length > 0 ? (
                 todolist?.map((el, i) => {
