@@ -9,6 +9,8 @@ const Label = ({
   opacity,
   children,
   width,
+  align,
+  justify,
   height,
   hover,
   shadow,
@@ -21,6 +23,8 @@ const Label = ({
     color,
     shadow,
     radius,
+    align,
+    justify,
     opacity,
     width,
     height,
@@ -40,7 +44,7 @@ Label.defaultProps = {
 };
 
 const StLabel = styled.div`
-  display: inline-block;
+  display: flex;
   background-color: #e6b5b8;
   color: white;
   opacity: 1;
@@ -48,6 +52,8 @@ const StLabel = styled.div`
   height: 25px;
   border-radius: 5px;
   border: none;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   pointer-events: ${({ event }) => event};
   padding: 3px;
