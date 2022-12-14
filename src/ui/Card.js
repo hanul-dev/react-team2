@@ -50,7 +50,7 @@ Card.defaultProps = {
   direction: "row",
   bgColor: "none",
   color: "black",
-  border: "none",
+  border: "1px solid #48404d",
   radius: "0px",
   shadow: "none",
   opacity: 1,

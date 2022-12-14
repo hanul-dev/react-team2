@@ -12,12 +12,10 @@ const BoxCard = ({ el }) => {
   const dispatch = useDispatch();
   return (
     <Card
-      border="1px solid red"
       width="250px"
       height="200px"
       radius="12px"
       bgColor="whiteSmoke"
-      shadow="inset 2px 2px 3px #333"
       direction="column"
     >
       <Box>
