@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Label from "../../ui/Label";
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
+import Loading from "./../LoadingPage/Loading";
 import {
   searchData,
   searchLabels,
   initTodo,
   getData,
 } from "../../redux/modules/postSlice";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const Intro = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -48,9 +50,9 @@ const Intro = () => {
     dispatch(searchLabels(e.target.id));
   };
   return (
-    <Box width="80%" direction="column">
-      {isloading ? <p>로딩중이야</p> : <></>}
-      {error ? <p>에러야</p> : <></>}
+    <Box width="100%" direction="column" overflow="hidden">
+      {isloading ? <Loading /> : <></>}
+      {error ? <ErrorPage /> : <></>}
       <Modal
         modal={openModal}
         onClick={() => {
@@ -58,13 +60,13 @@ const Intro = () => {
         }}
         event="none"
       />
-      {!isloading ? (
+      {!isloading && !error ? (
         <>
-          <Box justify="flex-start" width="100%" height="60px">
+          <Box justify="flex-start" width="80%" height="60px">
             My Board
           </Box>
           <Box
-            width="100%"
+            width="80%"
             direction="column"
             height="80vh"
             border="1px solid"
