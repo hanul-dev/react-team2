@@ -22,6 +22,7 @@ const Input = ({
   holder,
   height,
   padding,
+  outline,
 }) => {
   const styles = {
     width,
@@ -38,6 +39,7 @@ const Input = ({
     height,
     margin,
     padding,
+    outline,
   };
   return (
     <StInput
@@ -71,6 +73,7 @@ Input.defaultProps = {
   margin: "0",
   padding: "10px",
   holder: "",
+  outline: "",
 };
 
 const StInput = styled.input`
@@ -88,6 +91,7 @@ const StInput = styled.input`
   value: ${({ value }) => value};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
+
   &:focus {
     outline: none;
   }

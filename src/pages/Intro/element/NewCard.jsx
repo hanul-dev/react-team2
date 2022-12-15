@@ -1,54 +1,32 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { deleteData } from "../../../redux/modules/postSlice";
 import styled from "styled-components";
-import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 
-const BoxCard = ({ el }) => {
-  const dispatch = useDispatch();
-
+export default function NewCard({ mode }) {
   return (
-    <>
-      <CardWrap>
-        <CardDeleteButton
-          onClick={() => {
-            dispatch(deleteData(el.id));
-          }}
-        >
-          <RestoreFromTrashIcon />
-        </CardDeleteButton>
-        <CardHeader mode={el.label}>
-          <i></i>
-        </CardHeader>
-        <div>
-          <CardTitle>{el.title}</CardTitle>
-          <CardText>{el.createdAt}</CardText>
-          <CardText>{el.content}</CardText>
-        </div>
-        <CardContents>
-          <NavLink to={`/detail/${el.id}`}>
-            <CardButton>Detail</CardButton>
-          </NavLink>
-        </CardContents>
-      </CardWrap>
-    </>
+    <CardWrap>
+      <CardHeader mode={mode}>
+        <i></i>
+      </CardHeader>
+      <CardContents>
+        <CardTitle>Title</CardTitle>
+        <CardText>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </CardText>
+        <CardButton>code</CardButton>
+      </CardContents>
+    </CardWrap>
   );
-};
+}
 
 const CardWrap = styled.div`
-  width: 250px;
-  height: calc(250 * 1.4px);
-  position: relative;
+  width: 220px;
   background: #fff;
   border-radius: 20px;
   border: 5px solid #fff;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   color: var(--color-text);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.1);
@@ -83,18 +61,6 @@ const CardHeader = styled.div`
     font-size: 72px;
   }
 `;
-const CardDeleteButton = styled.button`
-  display: initial;
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  background: none;
-  border: none;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-  color: white;
-`;
 
 const CardContents = styled.div`
   display: flex;
@@ -109,19 +75,26 @@ const CardTitle = styled.h1`
   text-transform: uppercase;
   font-size: 16px;
   margin-top: 10px;
+  margin-bottom: 20px;
 `;
 const CardText = styled.p`
   text-align: center;
   font-size: 12px;
+  margin-bottom: 20px;
 `;
 const CardButton = styled.button`
   border: none;
   border-radius: 100px;
   padding: 5px 30px;
-  background: #f9d6d4;
+  color: #fff;
   margin-bottom: 15px;
   text-transform: uppercase;
-  cursor: pointer;
 `;
 
-export default BoxCard;
+// .card-header.one{
+// background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+// }
+
+// .card-btn.one{
+// background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+// }
