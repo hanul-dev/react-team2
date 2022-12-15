@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 
 const useValidation = () => {
-  const [isValid, setIsValid] = useState({ title: false, content: false });
-
+  const [isValid, setIsValid] = useState({
+    title: false,
+    content: false,
+  });
+  
   const lengthCheck = (input, words, max) => {
     if (2 <= words.length && words.length <= max) {
       setIsValid({ ...isValid, [input]: true });
@@ -10,7 +13,11 @@ const useValidation = () => {
       setIsValid({ ...isValid, [input]: false });
     }
   };
-  return { isValid, lengthCheck };
+
+  const validReset = () => {
+    setIsValid({ ...isValid, title: false, content: false });
+  };
+  return { isValid, lengthCheck, validReset };
 };
 
 export default useValidation;

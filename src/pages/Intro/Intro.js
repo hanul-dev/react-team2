@@ -100,7 +100,7 @@ const Intro = () => {
                     dispatch(initTodo());
                   }}
                 >
-                  전체 보기
+                  View All
                 </Button>
               </div>
             </Box>
@@ -129,7 +129,7 @@ const Intro = () => {
                 </Label>
               </Box>
               <Button width="80px" onClick={onClickHandler}>
-                추가
+                Add
               </Button>
             </Box>
 
