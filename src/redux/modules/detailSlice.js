@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: process.env.REACT_APP_FRONT_BASE_URL,
   headers: { "X-Custom-Header": "foobar" },
   timeout: 1000,
 });

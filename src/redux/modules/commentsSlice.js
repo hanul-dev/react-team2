@@ -6,7 +6,7 @@ const init = {
 };
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: process.env.REACT_APP_FRONT_BASE_URL,
   timeout: 1000,
 });
 
