@@ -101,6 +101,8 @@ const Intro = () => {
             align="center"
           >
             <Box
+
+  
               width="100%"
               height="80px"
               bgColor="white"
@@ -125,7 +127,7 @@ const Intro = () => {
                 </Label>
               </Box>
               <Button width="80px" onClick={onClickHandler}>
-                추가
+                Add
               </Button>
             </Box>
 

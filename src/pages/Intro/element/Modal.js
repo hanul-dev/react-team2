@@ -14,11 +14,12 @@ import { v4 as uuidv4 } from "uuid";
 
 const Modal = ({ modal, onClick }) => {
   const { input, changeHandler, label, changeLabel, reset } = useInput();
-  const { isValid, lengthCheck } = useValidation();
+  const { isValid, lengthCheck, validReset } = useValidation();
+  const [ labelValid, setLabelValid] = useState(false);
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
-    if (isValid.title && isValid.content) {
+    if (isValid.title && isValid.content && labelValid) {
       const today = new Date();
       const createdAt = today.toLocaleDateString("ko", {
         year: "numeric",
@@ -28,13 +29,21 @@ const Modal = ({ modal, onClick }) => {
       const doc = { ...input, id: uuidv4(), createdAt, label };
       dispatch(addData(doc));
       onClick();
+      
+      // Reset valids of Posting
       reset();
+      validReset();
+      setLabelValid(false);
     }
   };
 
   const closeModalHandler = () => {
     onClick();
+    
+    // Reset valids of Posting
     reset();
+    validReset();
+    setLabelValid(false);
   };
 
   const styles = { modal };
@@ -84,11 +93,25 @@ const Modal = ({ modal, onClick }) => {
                 )}
                 <label>Add label</label>
                 <Box height="10%" justify="space-around">
-                  <Label onClick={() => changeLabel("Redux")}>Redux</Label>
-                  <Label onClick={() => changeLabel("React")}>React</Label>
-                  <Label onClick={() => changeLabel("Javascript")}>
+                  <Label value={label} onClick={() => {
+                    changeLabel("Redux");
+                    setLabelValid(true);
+                  }}>Redux</Label>
+                  <Label value={label} onClick={() => {
+                    changeLabel("React");
+                    setLabelValid(true);
+                  }}>React</Label>
+                  <Label value={label} onClick={() => {
+                    changeLabel("Javascript");
+                    setLabelValid(true);
+                  }}>
                     Javascript
                   </Label>
+                  {!labelValid && (
+                    <Validation>
+                      라벨을 선택해주세요.
+                    </Validation>
+                  )}
                 </Box>
               </Box>
               <Box height="10%" justify="flex-end">
