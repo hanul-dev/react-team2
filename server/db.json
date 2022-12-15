@@ -1,15 +1,8 @@
 {
   "posts": [
     {
-      "title": "ㄹㅁㅈㄷ",
-      "content": "ㅁㄹㅈㄷ",
-      "id": "id2",
-      "createdAt": "2022년 12월 14일",
-      "label": "Javascript"
-    },
-    {
       "title": "afew",
-      "content": "awfe",
+      "content": "awfewfaeaweffaafwefewafewawefwfewfwfwfwfwfwfwfwfwfwfwfw\nawefoijaewoifjaeowijfoiaewjfoiajewoifjweaoijfio\nwfaeoijafewoiaj\n\nawefoijfaeoijafe\n\naweoifja\n\naweoifjaeowijfioawjefioaewjf\noawejfoiawejfiojea\n",
       "id": "1cec2e9b-5a58-468e-a32a-b8e069538143",
       "createdAt": "2022년 12월 14일",
       "label": "React"
@@ -22,7 +15,7 @@
       "label": ""
     },
     {
-      "title": "23",
+      "title": "3333333333",
       "content": "23",
       "id": "aded7cab-4ba9-4520-825d-32cd8ee6caa0",
       "createdAt": "2022년 12월 15일",
@@ -87,28 +80,46 @@
   ],
   "comments": [
     {
-      "postId": "id2",
-      "text": "ㅁㅈㄷㄹ",
-      "createAt": "오후 10:02:14",
-      "id": "id3"
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "aewfwaefijoawijefoiawejfoiaejwfoijawfafwaefewewaffwefwafawefewafawefae",
+      "createAt": "오전 11:52:55",
+      "id": "7333bd53-7801-4d39-827a-479129afc6a8"
     },
     {
-      "postId": "id2",
-      "text": "ㅁㅈㄹㄷ",
-      "createAt": "오후 10:02:16",
-      "id": "id4"
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "eawfij",
+      "createAt": "오전 11:57:53",
+      "id": "9486e149-58a1-41e2-8069-2229433f3675"
     },
     {
-      "postId": "id2",
-      "text": "ㅁㄷㅈㄹ",
-      "createAt": "오후 10:02:17",
-      "id": "id6"
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "ajfiofewj",
+      "createAt": "오후 12:28:41",
+      "id": "54c85a3d-037e-4f24-b488-9287cd3cede9"
     },
     {
-      "postId": "id2",
-      "text": "ㅁㅈㄷㄹ",
-      "createAt": "오후 10:02:17",
-      "id": "id7"
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "weoifja",
+      "createAt": "오후 12:28:42",
+      "id": "21808059-dbea-4cc9-b633-399e1043e26b"
+    },
+    {
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "ewwoiejfae",
+      "createAt": "오후 12:28:43",
+      "id": "ebd07fb6-519f-4b42-add4-57b0eaf87192"
+    },
+    {
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "awfeoijo",
+      "createAt": "오후 12:28:43",
+      "id": "16e2f230-d937-4c42-8d43-657234ed0f1d"
+    },
+    {
+      "postId": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "text": "afwe",
+      "createAt": "오후 12:28:44",
+      "id": "74917882-ff7d-4300-b7d1-c9ecf61edab9"
     }
   ],
   "profile": {

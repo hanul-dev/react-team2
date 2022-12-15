@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Label from "../../../../ui/Label";
+
 import {
   getData,
   getDelData,
@@ -35,7 +39,7 @@ const PaintDetailContainer = ({ postId }) => {
       dispatch(updateData({ title: reTitle, content: reContent, postId }));
     }
   };
-  const { title, content, id } = state[0] ?? {
+  const { title, content, id, label } = state[0] ?? {
     title: "",
     content: "",
     createdAt: "",
@@ -47,36 +51,48 @@ const PaintDetailContainer = ({ postId }) => {
   }, [dispatch, postId]);
   return (
     <StyledPaintDetailcontainer>
-      <div style={{ height: "5%", border: "1px solid green" }}>{id}</div>
-      <div style={{ height: "10%", border: "1px solid red" }}>
-        {updateMode === true ? (
-          <input value={reTitle} onChange={(e) => titleChangeHandler(e)} />
-        ) : (
-          <span style={{ marginLeft: "10px", display: "flex" }}>{title}</span>
-        )}
-      </div>
-      <div style={{ display: "flex", margin: "5px 0px 5px 0" }}>
-        <div style={{ flexGrow: "2" }}>label</div>
-        <div style={{ flexGrow: "1", width: "3%" }}>
-          <button
-            style={{ width: "50px", marginRight: "10px" }}
-            onClick={() => deleteOnclickHandler(postId)}
-          >
-            삭제
-          </button>
-          <button
-            style={{ width: "50px", marginRight: "10px" }}
+      <StyledPaintDetailLogo>
+        {/* <div>
+          <span>{id}</span>
+        </div> */}
+        {/* uuid는 식별용인데 화면에 노출되는게 자연스럽지 못하다는 생각이 들어 주석처리 했습니다. */}
+        <div style={{ display: "flex", gap: "10px" }}>
+          <StyledIconButton onClick={() => deleteOnclickHandler(postId)}>
+            <DeleteIcon />
+          </StyledIconButton>
+          <StyledIconButton
             onClick={() => updateOnclickHandler(title, content)}
           >
-            수정
-          </button>
+            <AutoFixHighIcon />
+          </StyledIconButton>
         </div>
-      </div>
-      {updateMode === true ? (
-        <input value={reContent} onChange={(e) => contentChangeHandler(e)} />
-      ) : (
-        <div>{content}</div>
-      )}
+      </StyledPaintDetailLogo>
+      <StyledPaintDetailTitle>
+        {updateMode === true ? (
+          <StyledUpdateInput
+            value={reTitle}
+            onChange={(e) => titleChangeHandler(e)}
+            maxLength={25}
+          />
+        ) : (
+          <span style={{ marginLeft: "10px" }}>{title}</span>
+        )}
+      </StyledPaintDetailTitle>
+      <StyledPaintDetailContentsWrapper>
+        <div>
+          <Label style={{ flexGrow: "2" }}>{label}</Label>
+        </div>
+        <StyledPaintDetailContents>
+          {updateMode === true ? (
+            <StyledUpdateTextarea
+              value={reContent}
+              onChange={(e) => contentChangeHandler(e)}
+            />
+          ) : (
+            <div>{content}</div>
+          )}
+        </StyledPaintDetailContents>
+      </StyledPaintDetailContentsWrapper>
     </StyledPaintDetailcontainer>
   );
 };
@@ -86,5 +102,98 @@ export default PaintDetailContainer;
 const StyledPaintDetailcontainer = styled.div`
   width: 100%;
   height: 65%;
-  border: 2px solid black;
+  border: 2px solid #f9d6d4;
+  border-radius: 15px;
+  color: #48404d;
+  text-align: left;
+  overflow: hidden;
+`;
+
+const StyledPaintDetailLogo = styled.div`
+  width: 100%;
+  height: 7%;
+  min-height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f9d6d4;
+  background: white;
+
+  padding: 0px 20px;
+  &::before {
+    content: "Detail Page";
+    color: #48404d;
+  }
+`;
+
+const StyledPaintDetailTitle = styled.div`
+  width: 100%;
+  height: 7%;
+  min-height: 30px;
+  border-bottom: 2px solid #f9d6d4;
+  background: white;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  &::before {
+    content: "Title : ";
+    color: #48404d;
+  }
+`;
+
+const StyledUpdateInput = styled.input`
+  width: 70%;
+  height: 80%;
+  border: none;
+  background: #f9d6d4;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-left: 10px;
+  color: #48404d;
+`;
+
+const StyledIconButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #48404d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+const StyledPaintDetailContentsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 5px 20px;
+  background: white;
+`;
+
+const StyledPaintDetailContents = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  height: 50%;
+  &::before {
+    content: "TextContents : ";
+    color: #48404d;
+  }
+`;
+
+const StyledUpdateTextarea = styled.textarea`
+  width: 100%;
+  height: 80%;
+  border: none;
+  background: #f9d6d4;
+  border-radius: 5px;
+  padding: 0px 10px;
+  color: #48404d;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+  resize: none;
 `;
