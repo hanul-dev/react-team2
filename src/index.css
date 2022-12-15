@@ -18,6 +18,9 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
 @font-face {
   font-family: "virgil";

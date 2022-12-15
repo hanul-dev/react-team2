@@ -67,6 +67,7 @@ const Comments = ({
                     width: "75%",
                     overflowX: "scroll",
                     textAlign: "left",
+                    
                   }}
                 >
                   {comment.text}
