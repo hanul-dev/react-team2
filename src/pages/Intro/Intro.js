@@ -9,6 +9,9 @@ import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
 import Loading from "./../LoadingPage/Loading";
 import styled from "styled-components";
+import SavedSearchIcon from "@mui/icons-material/SavedSearch";
+import DownloadIcon from "@mui/icons-material/Download";
+import LoupeIcon from "@mui/icons-material/Loupe";
 import {
   searchData,
   searchLabels,
@@ -62,58 +65,61 @@ const Intro = () => {
         }}
         event="none"
       />
+
+      {/* nav */}
       {!isloading && !error ? (
         <>
           <StyledIntroNav>
-            <span>My Board</span>
+            <StyledIntroSearchWrapper>
+              <span>My Board</span>
 
-            <Input
-              width="50%"
-              height="40%"
-              holder="Keyword"
-              value={input.search}
-              name="search"
-              change={changeHandler}
-              keyup={enterKeyHandler}
-            ></Input>
-
+              <Input
+                width="100%"
+                height="100%"
+                holder="Search"
+                value={input.search}
+                name="search"
+                change={changeHandler}
+                keyup={enterKeyHandler}
+                border="none"
+              ></Input>
+            </StyledIntroSearchWrapper>
             <div style={{ display: "flex", gap: "10px" }}>
-              <Button width="80px" onClick={enterData}>
-                Enter
-              </Button>
-              <Button
+              <StyledIconButton width="80px" onClick={enterData}>
+                <SavedSearchIcon />
+              </StyledIconButton>
+              <StyledIconButton
                 width="80px"
                 onClick={() => {
                   dispatch(initTodo());
                 }}
               >
-                전체 보기
-              </Button>
+                <Button>All</Button>
+              </StyledIconButton>
             </div>
           </StyledIntroNav>
 
+          {/* contents */}
           <Box
-            width="80%"
+            width="100%"
             direction="column"
-            height="80vh"
-            border="1px solid"
+            height="100vh"
             radius="8px"
             align="center"
           >
             <Box
-
-  
               width="100%"
-              height="80px"
+              height="40px"
               bgColor="white"
               justify="space-between"
               padding="0px 20px"
             >
               <Box
+                display="flex"
                 justify="space-around"
-                border="1px solid"
+                gap="10px"
                 height="70%"
-                width="40%"
+                width="20%"
                 margin="0"
               >
                 <Label id="Redux" onClick={onSearchLabelHandler}>
@@ -126,13 +132,14 @@ const Intro = () => {
                   Javascript
                 </Label>
               </Box>
-              <Button width="80px" onClick={onClickHandler}>
-                Add
-              </Button>
+              <StyledIconButton onClick={onClickHandler}>
+                <LoupeIcon />
+              </StyledIconButton>
             </Box>
 
             <Box
               flexWrap="wrap"
+              gap="40px"
               display={searchTodo !== null ? "flex" : "none"}
             >
               {searchTodo?.length > 0 ? (
@@ -146,6 +153,7 @@ const Intro = () => {
             <Box
               display={searchLabel !== null ? "flex" : "none"}
               flexWrap="wrap"
+              gap="40px"
             >
               {searchLabel?.length > 0 ? (
                 searchLabel?.map((el, i) => {
@@ -160,6 +168,7 @@ const Intro = () => {
                 searchLabel === null && searchTodo === null ? "flex" : "none"
               }
               flexWrap="wrap"
+              gap="40px"
             >
               {todolist?.length > 0 ? (
                 todolist?.map((el, i) => {
@@ -186,7 +195,29 @@ const StyledIntroNav = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid black;
+  box-shadow: 0 5px 5px -5px #333;
   position: sticky;
-  padding: 0px 20px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+`;
+
+const StyledIntroSearchWrapper = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+`;
+
+const StyledIconButton = styled.div`
+  display: initial;
+  color: #48404d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.2);
+  }
 `;

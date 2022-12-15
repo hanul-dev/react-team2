@@ -21,6 +21,7 @@ const Box = ({
   position,
   flexWrap,
   overflow,
+  gap,
 }) => {
   const styles = {
     width,
@@ -40,6 +41,7 @@ const Box = ({
     position,
     flexWrap,
     overflow,
+    gap,
   };
   return <StCard {...styles}>{children}</StCard>;
 };
@@ -61,12 +63,14 @@ Box.defaultProps = {
   margin: "0 auto",
   position: "",
   flexWrap: "",
+  gap: "",
 };
 const StCard = styled.div`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   display: ${({ display }) => display};
   align-items: ${({ align }) => align};
+  gap: ${({ gap }) => gap};
   justify-content: ${({ justify }) => justify};
   flex-direction: ${({ direction }) => direction};
   flex-wrap: ${({ flexWrap }) => flexWrap};
