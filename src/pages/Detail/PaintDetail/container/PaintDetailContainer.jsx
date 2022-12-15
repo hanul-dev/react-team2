@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const PaintDetailContainer = ({ postId }) => {
   const state = useSelector((state) => state.detailReducer.posts);
   const navigate = useNavigate();
-
+  const textarea = useRef();
   const [updateMode, setUpdateMode] = useState(false);
   const [reTitle, setReTitle] = useState("");
   const [reContent, setReContent] = useState("");
@@ -23,6 +23,8 @@ const PaintDetailContainer = ({ postId }) => {
     setReTitle(e.target.value);
   };
   const contentChangeHandler = (e) => {
+    textarea.current.style.height = "auto";
+    textarea.current.style.height = textarea.current.scrollHeight + "px";
     setReContent(e.target.value);
   };
   const deleteOnclickHandler = (id) => {
@@ -87,6 +89,8 @@ const PaintDetailContainer = ({ postId }) => {
             <StyledUpdateTextarea
               value={reContent}
               onChange={(e) => contentChangeHandler(e)}
+              ref={textarea}
+              rows={1}
             />
           ) : (
             <div>{content}</div>
@@ -186,7 +190,6 @@ const StyledPaintDetailContents = styled.div`
 
 const StyledUpdateTextarea = styled.textarea`
   width: 100%;
-  height: 80%;
   border: none;
   background: #f9d6d4;
   border-radius: 5px;
