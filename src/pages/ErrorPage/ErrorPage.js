@@ -5,6 +5,7 @@ const ErrorPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.load}>
+        <div> </div>
         <div>R</div>
         <div>O</div>
         <div>R</div>

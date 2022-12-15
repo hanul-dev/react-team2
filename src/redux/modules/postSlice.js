@@ -2,11 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { sleep } from "../../utils/sleep";
 
-const a = process.env.REACT_APP_FRONT_BASE_URL;
 const instance = axios.create({
   baseURL: process.env.REACT_APP_FRONT_BASE_URL,
   headers: { "X-Custom-Header": "foobar" },
-  timeout: 1000,
+  timeout: 10000,
 });
 
 export const getData = createAsyncThunk(
