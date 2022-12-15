@@ -8,6 +8,7 @@ import Label from "../../ui/Label";
 import useInput from "./hooks/useInput";
 import Modal from "./element/Modal";
 import Loading from "./../LoadingPage/Loading";
+import styled from "styled-components";
 import {
   searchData,
   searchLabels,
@@ -49,6 +50,7 @@ const Intro = () => {
   const onSearchLabelHandler = async (e) => {
     dispatch(searchLabels(e.target.id));
   };
+
   return (
     <Box width="100%" direction="column" overflow="hidden">
       {isloading ? <Loading /> : <></>}
@@ -62,9 +64,34 @@ const Intro = () => {
       />
       {!isloading && !error ? (
         <>
-          <Box justify="flex-start" width="80%" height="60px">
-            My Board
-          </Box>
+          <StyledIntroNav>
+            <span>My Board</span>
+
+            <Input
+              width="50%"
+              height="40%"
+              holder="Keyword"
+              value={input.search}
+              name="search"
+              change={changeHandler}
+              keyup={enterKeyHandler}
+            ></Input>
+
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Button width="80px" onClick={enterData}>
+                Enter
+              </Button>
+              <Button
+                width="80px"
+                onClick={() => {
+                  dispatch(initTodo());
+                }}
+              >
+                전체 보기
+              </Button>
+            </div>
+          </StyledIntroNav>
+
           <Box
             width="80%"
             direction="column"
@@ -73,37 +100,6 @@ const Intro = () => {
             radius="8px"
             align="center"
           >
-            <Box
-              height="120px"
-              display="flex"
-              justify="space-between"
-              padding="0px 20px"
-            >
-              <Box direction="column" margin="0" width="70%" align="flex-start">
-                <Input
-                  width="80%"
-                  height="40%"
-                  holder="Keyword"
-                  value={input.search}
-                  name="search"
-                  change={changeHandler}
-                  keyup={enterKeyHandler}
-                ></Input>
-              </Box>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <Button width="80px" onClick={enterData}>
-                  Enter
-                </Button>
-                <Button
-                  width="80px"
-                  onClick={() => {
-                    dispatch(initTodo());
-                  }}
-                >
-                  전체 보기
-                </Button>
-              </div>
-            </Box>
             <Box
               width="100%"
               height="80px"
@@ -181,3 +177,14 @@ const Intro = () => {
 };
 
 export default Intro;
+
+const StyledIntroNav = styled.nav`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  position: sticky;
+  padding: 0px 20px;
+`;
