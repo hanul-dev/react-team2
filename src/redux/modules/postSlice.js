@@ -28,12 +28,8 @@ export const addData = createAsyncThunk(
       let result;
       const { search, ...doc } = data;
       const res = await instance.post("/posts", doc);
-      if (res.request.status === 201) {
-        result = await instance.get("/posts");
-        return result.data;
-      } else {
-        return thunkAPI.rejectWithValue({ message: "등록실패" });
-      }
+      result = await instance.get("/posts");
+      return result.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
