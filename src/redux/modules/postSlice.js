@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {sleep} from "../../utils/sleep"
+import { sleep } from "../../utils/sleep";
 
 const instance = axios.create({
   baseURL: "http://localhost:3001",
@@ -13,7 +13,7 @@ export const getData = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await instance.get("/posts");
-      await sleep(1500);
+      await sleep(500);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -97,7 +97,6 @@ const postSlice = createSlice({
   name: "todo",
   initialState: initial,
   reducers: {
-
     initTodo: (state, action) => {
       state.searchTodo = null;
       state.searchLabel = null;
