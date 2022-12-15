@@ -10,7 +10,10 @@ const useValidation = () => {
       setIsValid({ ...isValid, [input]: false });
     }
   };
-  return { isValid, lengthCheck };
+  const labelReset = () => {
+    setIsValid({ title: false, content: false });
+  };
+  return { isValid, lengthCheck, labelReset };
 };
 
 export default useValidation;

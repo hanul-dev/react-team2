@@ -1,53 +1,49 @@
 {
   "posts": [
     {
-      "title": "ㄹㅁㅈㄷ",
-      "content": "ㅁㄹㅈㄷ",
-      "id": "id2",
-      "createdAt": "2022년 12월 14일",
+      "title": "3123",
+      "content": "",
+      "id": "36f2112d-91b4-4f5b-8468-c2598bd80cfa",
+      "createdAt": "2022년 12월 15일",
       "label": "Javascript"
     },
     {
-      "title": "afew",
-      "content": "awfe",
-      "id": "1cec2e9b-5a58-468e-a32a-b8e069538143",
-      "createdAt": "2022년 12월 14일",
+      "title": "123",
+      "content": "132",
+      "id": "e44dc2d4-aba9-4ada-a662-775cbe71fcd5",
+      "createdAt": "2022년 12월 15일",
+      "label": "Javascript"
+    },
+    {
+      "title": "1212",
+      "content": "1212",
+      "id": "31254c15-7b9c-4bdb-bc5c-a91cb22ede11",
+      "createdAt": "2022년 12월 15일",
+      "label": "Javascript"
+    },
+    {
+      "title": "123",
+      "content": "132",
+      "id": "04e1945c-263b-46a6-82c3-ed55be95f13d",
+      "createdAt": "2022년 12월 15일",
       "label": "React"
     },
     {
-      "title": "ewfa",
-      "content": "awfe",
-      "id": "790fc2f3-abcc-4122-80e9-b5d94ee93032",
+      "title": "123",
+      "content": "3123",
+      "id": "8bfb705a-2afb-45c6-8b4b-10255bceb7d5",
       "createdAt": "2022년 12월 15일",
-      "label": ""
+      "label": "Redux"
+    },
+    {
+      "title": "123",
+      "content": "123",
+      "id": "8cf26386-caa9-4d0d-8ea6-d47fae3027ea",
+      "createdAt": "2022년 12월 15일",
+      "label": "React"
     }
   ],
-  "comments": [
-    {
-      "postId": "id2",
-      "text": "ㅁㅈㄷㄹ",
-      "createAt": "오후 10:02:14",
-      "id": "id3"
-    },
-    {
-      "postId": "id2",
-      "text": "ㅁㅈㄹㄷ",
-      "createAt": "오후 10:02:16",
-      "id": "id4"
-    },
-    {
-      "postId": "id2",
-      "text": "ㅁㄷㅈㄹ",
-      "createAt": "오후 10:02:17",
-      "id": "id6"
-    },
-    {
-      "postId": "id2",
-      "text": "ㅁㅈㄷㄹ",
-      "createAt": "오후 10:02:17",
-      "id": "id7"
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   },

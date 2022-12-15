@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const Modal = ({ modal, onClick }) => {
   const { input, changeHandler, label, changeLabel, reset } = useInput();
-  const { isValid, lengthCheck } = useValidation();
+  const { isValid, lengthCheck, labelReset } = useValidation();
   const dispatch = useDispatch();
 
   const onCreateHandler = () => {
@@ -29,6 +29,7 @@ const Modal = ({ modal, onClick }) => {
       dispatch(addData(doc));
       onClick();
       reset();
+      labelReset();
     }
   };
 
