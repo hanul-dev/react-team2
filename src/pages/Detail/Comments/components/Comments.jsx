@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const Comments = ({
   comments,
@@ -46,6 +49,7 @@ const Comments = ({
   const updateInputHandler = (event) => {
     setUpdateText(event.target.value);
   };
+
   return (
     <StyledCommentsContainer>
       <StyledComments>
@@ -53,27 +57,46 @@ const Comments = ({
           return (
             <StyledComment key={comment.id}>
               {updateId === comment.id ? (
-                <input value={updateText} onChange={updateInputHandler} />
+                <StyledUpdateInput
+                  value={updateText}
+                  onChange={updateInputHandler}
+                />
               ) : (
-                <p>{comment.text}</p>
+                <p
+                  style={{
+                    width: "75%",
+                    overflowX: "scroll",
+                    textAlign: "left",
+                  }}
+                >
+                  {comment.text}
+                </p>
               )}
               <div
-                style={{ width: "35%", display: "flex", alignItems: "center" }}
+                style={{
+                  width: "30%",
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
               >
-                <button
-                  onClick={() => {
-                    updateButtonHandler(comment.id, comment.text);
-                  }}
-                >
-                  수정
-                </button>
-                <button
-                  onClick={() => {
-                    commentDeleteButtonHandler(comment.id);
-                  }}
-                >
-                  삭제
-                </button>
+                <div style={{ display: "flex" }}>
+                  <StyledIconButton
+                    onClick={() => {
+                      updateButtonHandler(comment.id, comment.text);
+                    }}
+                  >
+                    <AutoFixHighIcon />
+                  </StyledIconButton>
+                  <StyledIconButton
+                    onClick={() => {
+                      commentDeleteButtonHandler(comment.id);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </StyledIconButton>
+                </div>
                 <p style={{ fontSize: "5px" }}>{comment.createAt}</p>
               </div>
             </StyledComment>
@@ -85,7 +108,9 @@ const Comments = ({
           value={commentInput}
           onChange={commentChangeHandler}
         />
-        <StyledCommentsButton>Submit</StyledCommentsButton>
+        <StyledCommentsButton>
+          <AddCircleIcon />
+        </StyledCommentsButton>
       </StyledCommentsForm>
     </StyledCommentsContainer>
   );
@@ -94,7 +119,9 @@ const Comments = ({
 const StyledCommentsContainer = styled.div`
   width: 100%;
   height: 30%;
-  border: 2px solid black;
+  background: #f9d6d4;
+  color: #48404d;
+  border-radius: 15px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -104,18 +131,21 @@ const StyledCommentsContainer = styled.div`
 const StyledComments = styled.div`
   width: 100%;
   height: 80%;
-  padding: 2px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
   gap: 5px;
   overflow-y: scroll;
-  border: 1px solid black;
+  background: #f9d6d4;
+  border-radius: 15px;
 `;
 
 const StyledComment = styled.div`
   width: 100%;
   height: 30px;
-  border: 1px solid black;
+  border: 1px solid #48404d;
+  background: white;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,7 +155,8 @@ const StyledComment = styled.div`
 const StyledCommentsForm = styled.form`
   width: 100%;
   height: 20%;
-  border: 1px solid black;
+  border: 2px solid #48404d;
+  border-radius: 10px;
   padding: 3px;
   position: relative;
   display: flex;
@@ -136,15 +167,46 @@ const StyledCommentsForm = styled.form`
 const StyledCommentsFormInput = styled.input`
   width: 80%;
   height: 100%;
-  background: palegreen;
+  background: transparent;
+  margin-left: 20px;
   border: none;
+  outline: none;
   padding: 10px;
 `;
 
-const StyledCommentsButton = styled.button`
-  width: 20%;
-  height: 100%;
-  background: skyblue;
+const StyledCommentsButton = styled.div`
+  color: #48404d;
+  width: 25px;
+  height: 25px;
+  display: initial;
+  background: none;
   border: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const StyledIconButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #48404d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+const StyledUpdateInput = styled.input`
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+  color: #48404d;
 `;
 export default Comments;
