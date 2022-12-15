@@ -8,11 +8,11 @@ const useInput = (inputValue) => {
       search: "",
     }
   );
+  const [label, setLabel] = useState("");
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
-  const [label, setLabel] = useState("");
   const changeLabel = (label) => {
     setLabel(label);
   };
