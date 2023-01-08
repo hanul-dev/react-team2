@@ -6,6 +6,7 @@ import CommentsContainer from "./Comments/container/CommentsContainer";
 
 const Detail = () => {
   let { id } = useParams();
+  
 
   return (
     <StyledDetailContainer>

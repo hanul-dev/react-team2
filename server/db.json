@@ -1,8 +1,53 @@
 {
-
-  "posts": [],
-
-  "comments": [],
+  "posts": [
+    {
+      "title": "ㄹㅁㅈㄷ",
+      "content": "ㅁㄹㅈㄷ",
+      "id": "id2",
+      "createdAt": "2022년 12월 14일",
+      "label": "Javascript"
+    },
+    {
+      "title": "afew",
+      "content": "awfe",
+      "id": "1cec2e9b-5a58-468e-a32a-b8e069538143",
+      "createdAt": "2022년 12월 14일",
+      "label": "React"
+    },
+    {
+      "title": "ewfa",
+      "content": "awfe",
+      "id": "790fc2f3-abcc-4122-80e9-b5d94ee93032",
+      "createdAt": "2022년 12월 15일",
+      "label": ""
+    }
+  ],
+  "comments": [
+    {
+      "postId": "id2",
+      "text": "ㅁㅈㄷㄹ",
+      "createAt": "오후 10:02:14",
+      "id": "id3"
+    },
+    {
+      "postId": "id2",
+      "text": "ㅁㅈㄹㄷ",
+      "createAt": "오후 10:02:16",
+      "id": "id4"
+    },
+    {
+      "postId": "id2",
+      "text": "ㅁㄷㅈㄹ",
+      "createAt": "오후 10:02:17",
+      "id": "id6"
+    },
+    {
+      "postId": "id2",
+      "text": "ㅁㅈㄷㄹ",
+      "createAt": "오후 10:02:17",
+      "id": "id7"
+    }
+  ],
   "profile": {
     "name": "typicode"
   },

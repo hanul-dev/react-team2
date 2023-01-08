@@ -13,6 +13,7 @@ const useInput = (inputValue) => {
     setInput({ ...input, [name]: value });
   };
   const [label, setLabel] = useState("");
+
   const changeLabel = (label) => {
     setLabel(label);
   };
@@ -22,6 +23,7 @@ const useInput = (inputValue) => {
       content: "",
       search: "",
     });
+    setLabel("");
   };
   return { input, changeHandler, label, changeLabel, reset };
 };

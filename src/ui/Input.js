@@ -21,7 +21,7 @@ const Input = ({
   keypress,
   holder,
   height,
-  padding
+  padding,
 }) => {
   const styles = {
     width,
@@ -37,7 +37,7 @@ const Input = ({
     value,
     height,
     margin,
-    padding
+    padding,
   };
   return (
     <StInput
@@ -87,7 +87,7 @@ const StInput = styled.input`
   name: ${({ name }) => name};
   value: ${({ value }) => value};
   margin: ${({ margin }) => margin};
-  padding: ${({ padding }) => padding };
+  padding: ${({ padding }) => padding};
   &:focus {
     outline: none;
   }

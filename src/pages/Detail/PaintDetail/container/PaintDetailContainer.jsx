@@ -6,18 +6,11 @@ import {
   getDelData,
   updateData,
 } from "../../../../redux/modules/detailSlice";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const PaintDetailContainer = ({ postId }) => {
-  const pageStatus = useSelector((state) => state.detailReducer.posts).status;
   const state = useSelector((state) => state.detailReducer.posts);
-  console.log(state);
   const navigate = useNavigate();
-  // if (pageStatus === 200) {
-  //   console.log("1");
-
-  // }
 
   const [updateMode, setUpdateMode] = useState(false);
   const [reTitle, setReTitle] = useState("");
@@ -34,20 +27,15 @@ const PaintDetailContainer = ({ postId }) => {
   };
   const updateOnclickHandler = (title, content) => {
     if (updateMode === false) {
-      console.log(reTitle, reContent);
-      console.log(title, content);
       setUpdateMode(!updateMode);
       setReTitle(title);
       setReContent(content);
     } else {
       setUpdateMode(!updateMode);
-
-      dispatch(
-        updateData({ title: reTitle, content: reContent, postId: postId })
-      );
+      dispatch(updateData({ title: reTitle, content: reContent, postId }));
     }
   };
-  const { title, content, createdAt, id } = state[0] ?? {
+  const { title, content, id } = state[0] ?? {
     title: "",
     content: "",
     createdAt: "",
@@ -56,7 +44,7 @@ const PaintDetailContainer = ({ postId }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getData(postId));
-  }, [dispatch]);
+  }, [dispatch, postId]);
   return (
     <StyledPaintDetailcontainer>
       <div style={{ height: "5%", border: "1px solid green" }}>{id}</div>
